@@ -75,6 +75,8 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
     public float AttackPerfectAllowance { get; set; } = 1;
     public float AttackDamage { get; set; } = 1;
 
+    public double DamageTakenMultiplier { get; set; } = 1.0;
+
     //========= orpheus specific controls =========
 
 
