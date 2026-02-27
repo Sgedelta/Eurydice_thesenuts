@@ -31,6 +31,26 @@ public interface ICanEquip
 public interface ICanAttack
 {
     /// <summary>
+    /// Scalar value applied to the base speed for the attack slider
+    /// </summary>
+    public float AttackSpeed { get; set; }
+
+    /// <summary>
+    /// Scalar value applied to the base acceptable hit range for attack slider
+    /// </summary>
+    public float AttackMissAllowance {get; set; }
+
+    /// <summary>
+    /// Scalar value applied to the base acceptable perfect hit range for attack slider
+    /// </summary>
+    public float AttackPerfectAllowance {get; set; }
+
+    /// <summary>
+    /// Amount of Sympathy gained by an attack
+    /// </summary>
+    public float AttackDamage {get; set; }
+
+    /// <summary>
     /// An attack method, which takes an effectiveness (how accurately you hit the notes)
     /// </summary>
     /// <param name="effectiveness"></param>
@@ -48,34 +68,20 @@ public interface ICanAttack
 
 public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
 {
-    public Item[] EquippedItems { get; set; }
+    public Item[] EquippedItems { get; set; } = new Item[2];
     public Action<float> OnAttack { get; set; } //to be used by Eurydice effects
+    public float AttackSpeed { get; set; } = 1;
+    public float AttackMissAllowance { get; set; } = 1;
+    public float AttackPerfectAllowance { get; set; } = 1;
+    public float AttackDamage { get; set; } = 1;
 
     //========= orpheus specific controls =========
-    /// <summary>
-    /// Scalar value applied to the base speed for the attack slider
-    /// </summary>
-    [SerializeField] private float attackSpeed = 1;
 
-    /// <summary>
-    /// Scalar value applied to the base acceptable hit range for attack slider
-    /// </summary>
-    [SerializeField] private float attackMissAllowance = 1;
-
-    /// <summary>
-    /// Scalar value applied to the base acceptable perfect hit range for attack slider
-    /// </summary>
-    [SerializeField] private float attackPerfectAllowance = 1; 
-
-    /// <summary>
-    /// Amount of Sympathy gained by an attack
-    /// </summary>
-    [SerializeField] private float attackDamage = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        EquippedItems = new Item[2];
+
     }
 
     // Update is called once per frame

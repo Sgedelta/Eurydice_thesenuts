@@ -4,12 +4,12 @@ using UnityEngine;
 //for the definitions of ICanEquip and ICanAttack, see OrpheusController.cs
 public class EurydiceController : MonoBehaviour, ICanEquip
 {
-    public Item[] EquippedItems { get; set; }
+    public Item[] EquippedItems { get; set; } = new Item[2];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        EquippedItems = new Item[2];
+
     }
 
     // Update is called once per frame
