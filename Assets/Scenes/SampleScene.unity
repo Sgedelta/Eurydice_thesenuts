@@ -334,19 +334,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 148208781}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3015163953801594787}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MoveItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &148208781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +782,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Empty
+  m_text: Laurel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1518,10 +1506,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1219763408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58affb75242601b46afd4fc89318ed66, type: 3}
+  m_Script: {fileID: 11500000, guid: 803886927d26faa4fb3ed1fd04943a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <name>k__BackingField: 
+  modifyAmount: 0
 --- !u!1 &1319367747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,19 +1592,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1319367750}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3015163953801594787}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MoveItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1319367750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,7 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21277de3817d93c408b137bd14313c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TEMPITEM: {fileID: 0}
+  TEMPITEM: {fileID: 1219763410}
 --- !u!1 &1348824408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3d54dfa223bea4bb04c4d7bc71d3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TEMPITEM: {fileID: 0}
+  TEMPITEM: {fileID: 1521485475}
 --- !u!1 &1399954500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,19 +1936,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1448077068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3015163953801594787}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MoveItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1448077068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2052,10 +2016,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1521485473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58affb75242601b46afd4fc89318ed66, type: 3}
+  m_Script: {fileID: 11500000, guid: fc0e5f2f5a0b0cb468bc4ffceb0c7dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <name>k__BackingField: 
+  modifyAmount: 0
 --- !u!1 &1672811416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,19 +2340,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1770116023}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3015163953801594787}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MoveItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1770116023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,7 +2436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Empty
+  m_text: 'Torch
 
 '
   m_isRightToLeft: 0
@@ -2714,9 +2666,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1086592243}
     - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: Orpheus
+      value: 
+      objectReference: {fileID: 1348824410}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: Eurydice
+      value: 
+      objectReference: {fileID: 1339527285}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
       propertyPath: GeneralUI
       value: 
       objectReference: {fileID: 1735055931}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1319367749}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1448077067}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[2]'
+      value: 
+      objectReference: {fileID: 148208780}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1770116022}
     - target: {fileID: 6348212790741960469, guid: 612aec158e830d9498b4fa7319733287, type: 3}
       propertyPath: m_Name
       value: GameManager

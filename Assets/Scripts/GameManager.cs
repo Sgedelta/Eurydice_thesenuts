@@ -1,5 +1,7 @@
 using NUnit.Framework.Interfaces;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,10 @@ public class GameManager : MonoBehaviour
     public Item selectedItem;
     public int selectedItemIndex;
 
+    //Inventory slots
+    //TODO: may adjust this setup later
+    [SerializeField] private Button[] inventorySlots = new Button[4];
+
     private void Awake()
     {
         //standard singleton
@@ -27,6 +33,7 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning($"Destroying {name} due to the static instance of GameManager already being on {GameManager.instance.name}");
             Destroy(this.gameObject);
         }
+
     }
 
 
@@ -38,7 +45,13 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //Set up listeners on buttons
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            //Seems like passing in i directly is causing issues
+            int index = i;
+            inventorySlots[i].onClick.AddListener(() => MoveItem(index));
+        }
     }
 
     // Update is called once per frame
@@ -66,65 +79,93 @@ public class GameManager : MonoBehaviour
         //No selected item, store the one in the corresponding array slot
         if (selectedItem == null)
         {
-            ////TODO: highlight button?
-            RetrieveItem(i);
+            //TODO: highlight button
+            selectedItem = RetrieveItem(i);
             selectedItemIndex = i;
+            Debug.Log("Selected item: " + selectedItem);
             return;
         }
 
-        //Item already being moved, update existing info
-        Item previousItem = EquipItem(i);
+        //Moving spots
+
+        //Equips selected item, get previous item in slot if applicable
+        Item previousItem = EquipItem(selectedItem, i);
+
+        UpdateLabel(i, selectedItem.name);
+
 
         //If there's an item passed back, set it to the first item's spot
         if (previousItem != null)
         {
-            EquipItem(selectedItemIndex);
+            //Don't really need the return here
+            EquipItem(previousItem, selectedItemIndex);
+            UpdateLabel(selectedItemIndex, previousItem.name);
+        }
+        //Empty slot
+        else
+        {
+            UpdateLabel(selectedItemIndex);
         }
 
-        ////Null out selected item and index
+        Debug.Log("Eurydice Item 1: " + Eurydice.EquippedItems[0] + "Item 2: " + Eurydice.EquippedItems[1]);
+        Debug.Log("Orpheus Item 1: " + Orpheus.EquippedItems[0] + "Item 2: " + Orpheus.EquippedItems[1]);
+
+        //Null out selected item and index
+        //tbh index doesn't *need* to be wiped but just in case
         selectedItem = null;
         selectedItemIndex = -1;
 
-        //TODO: update text of buttons -- array of buttons to reference?
-        //In that case, may not need to pass in int and can just set listener on startup,,,,getting everything working first though
+        //Reset button highlight
 
     }
 
     //Helper for MoveItem, gets an item from an array based on button index
-    private void RetrieveItem(int i)
+    //TODO: update this to remove some number hardcoding
+    private Item RetrieveItem(int i)
     {
         //If index is >1, Eurydice array
         if (i > 1)
         {
-            i -= 2;
-            selectedItem = Eurydice.EquippedItems[i];
+            return Eurydice.EquippedItems[i - 2];
         }
 
         //Orpheus array
         else
         {
-            selectedItem = Orpheus.EquippedItems[i];
+            return Orpheus.EquippedItems[i];
         }
     }
 
     //Helper for MoveItem, runs equipItem on determined spot
-    private Item EquipItem(int i)
+    //TODO: update this to remove some number hardcoding
+    private Item EquipItem(Item item, int i)
     {
         Item previousItem = null;
+
+        //Removes item from any slots beforehand
+        Eurydice.UnequipItem(item);
+        Orpheus.UnequipItem(item);
+
         //If index is >1, Eurydice array
         if (i > 1)
         {
-            i -= 2;
-            previousItem = Eurydice.EquipItem(i, selectedItem);
+            previousItem = Eurydice.EquipItem(i - 2, item);
         }
 
         //Orpheus array
         else
         {
-            previousItem = Orpheus.EquipItem(i, selectedItem);
+            previousItem = Orpheus.EquipItem(i, item);
         }
 
-        //fallback, shouldn't get hit
+        
         return previousItem;
+    }
+
+    //Updates label for the inventory slot
+    //TODO: I assume this'll probably get replaced with sprites down the line?
+    private void UpdateLabel(int i, string name = "Empty")
+    {
+        inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = name;
     }
 }

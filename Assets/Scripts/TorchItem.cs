@@ -6,6 +6,7 @@ public class TorchItem : Item
     //TODO: split into separate modifiers for characters?
     [SerializeField] private float modifyAmount;
 
+    //TODO: singleton behavior
     public override string name => "Torch";
 
     public override void OrpheusEquip(OrpheusController control)

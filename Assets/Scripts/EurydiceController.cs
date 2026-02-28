@@ -11,7 +11,9 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //DEBUG--REMOVE LATER
+        EquipItem(0, TEMPITEM);
+        Debug.Log("Eurydice Inventory:" + EquippedItems[0] + EquippedItems[1]);
     }
 
     // Update is called once per frame
@@ -25,9 +27,16 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     {
         Item previousItem = EquippedItems[i];
 
-        //NOTE: logic updated later might require running unequip here for the previous item
+        //Properly unequip previous item
+        if (previousItem != null)
+        {
+            UnequipItem(previousItem);
+        }
+
         EquippedItems[i] = item;
+
         return previousItem;
+
     }
 
     public bool IsEquipped(Item item)

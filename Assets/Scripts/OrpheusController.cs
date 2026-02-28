@@ -84,7 +84,9 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //DEBUG--REMOVE LATER
+        EquipItem(0, TEMPITEM);
+        Debug.Log("Orpheus Inventory:" + EquippedItems[0] + EquippedItems[1]);
     }
 
     // Update is called once per frame
@@ -98,7 +100,10 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
         Item previousItem = EquippedItems[i];
 
         //Properly unequip previous item
-        UnequipItem(previousItem);
+        if (previousItem != null)
+        {
+            UnequipItem(previousItem);
+        }
 
         EquippedItems[i] = item;
 
@@ -121,14 +126,13 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
 
     public bool UnequipItem(Item item)
     {
-
         //Search array for matching item
         for (int i = 0; i < EquippedItems.Length; i++)
         {
             if (EquippedItems[i] == item)
             {
-                EquippedItems[i] = null;
                 item.OrpheusUnequip(this);
+                EquippedItems[i] = null;
                 return true;
             }
         }
