@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
         Item previousItem = null;
 
         //Removes item from any slots beforehand
+        //TODO: update unequip to take an index?
         Eurydice.UnequipItem(item);
         Orpheus.UnequipItem(item);
 
