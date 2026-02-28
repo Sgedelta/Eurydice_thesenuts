@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
     //Hi julia :) 
 
@@ -12,16 +12,14 @@ public class Item : MonoBehaviour
      * o -- equipitem/unequip item should run the functions to modify stats
      * e should -> ability/item selected -> call function -> function updates onattack
      */
-
+    public abstract string name { get; }
     //Adds modifier
-    public void OrpheusEquip() { }
+    public virtual void OrpheusEquip(OrpheusController control) { }
     //Removes modifier 
-    public void OrpheusUnequip() { }
-    //Enable ability to be selected
-    public void EurydiceEquip() { }
-    //Disable ability from being selected
-    public void EurydiceUnequip() { }
+    public virtual void OrpheusUnequip(OrpheusController control) { }
     //Update onattack with data or do other stuff as needed
-    public void EurydiceAbility() { }
+    public virtual void EurydiceAbility(OrpheusController control) { }
+    //Called at end of turn, removes temporary effects
+    public virtual void EurydiceEndAbility(OrpheusController control) { }
 
 }
