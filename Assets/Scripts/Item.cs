@@ -1,18 +1,25 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
-    //Hi julia :)
+    //Hi julia :) 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //Pseudocode brainstorm
+    /*
+     * Make this a parent class, with child scripts for items
+     * Overridable functions -- Eurydice effect and orpheus effect
+     * Call said functions when needed
+     * o -- equipitem/unequip item should run the functions to modify stats
+     * e should -> ability/item selected -> call function -> function updates onattack
+     */
+    public abstract string name { get; }
+    //Adds modifier
+    public virtual void OrpheusEquip(OrpheusController control) { }
+    //Removes modifier 
+    public virtual void OrpheusUnequip(OrpheusController control) { }
+    //Update onattack with data or do other stuff as needed
+    public virtual void EurydiceAbility(OrpheusController control) { }
+    //Called at end of turn, removes temporary effects
+    public virtual void EurydiceEndAbility(OrpheusController control) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
