@@ -4,7 +4,8 @@ public class LaurelItem : Item
 {
     //Percent modifier
     //TODO: split into separate modifiers for characters?
-    [SerializeField] private float modifyAmount;
+    [SerializeField] private float modifyAmountOrpheus;
+    [SerializeField] private float modifyAmountEurydice;
 
     //TODO: singleton behavior
 
@@ -12,22 +13,22 @@ public class LaurelItem : Item
 
     public override void OrpheusEquip(OrpheusController control)
     {
-        control.AttackDamage *= modifyAmount;
-        control.DamageTaken *= modifyAmount;
+        control.AttackDamage *= modifyAmountOrpheus;
+        control.DamageTaken *= modifyAmountOrpheus;
 
     }
     public override void OrpheusUnequip(OrpheusController control)
     {
-        control.AttackDamage /= modifyAmount;
-        control.DamageTaken /= modifyAmount;
+        control.AttackDamage /= modifyAmountOrpheus;
+        control.DamageTaken /= modifyAmountOrpheus;
     }
     public override void EurydiceAbility(OrpheusController control)
     {
-        //Set effect to onattack
+        control.AttackSpeed *= modifyAmountEurydice;
     }
 
     public override void EurydiceEndAbility(OrpheusController control)
     {
-        //Remove effect from onattack
+        control.AttackSpeed /= modifyAmountEurydice;
     }
 }
