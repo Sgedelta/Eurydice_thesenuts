@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHasMorale
@@ -26,6 +27,12 @@ public class Enemy : MonoBehaviour, IHasMorale
 
     private void Start()
     {
+        StartCoroutine(SetupOnNextFrame());
+    }
+
+    private IEnumerator SetupOnNextFrame()
+    {
+        yield return null;
         //TEMP
         GameManager.instance.StartCombat(this);
     }
