@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    
     //References to UIs to enable/disable
     //TODO: all placeholder UIs currently, this may be removed/adjusted
     [SerializeField] private GameObject EquipUI;

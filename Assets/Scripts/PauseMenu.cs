@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    //public static PauseMenu instance;
+    public static PauseMenu instance;
 
-    [SerializeField] private GameObject _pauseMenuUI;
+    private CanvasGroup _pauseMenuCanvasGroup;
     private bool isGamePaused = false;
 
-    /*private void Awake()
+    private void Awake()
     {
         // If an instance already exists and it's not this, destroy this one
         if(instance != null && instance != this)
@@ -22,12 +22,13 @@ public class PauseMenu : MonoBehaviour
 
         // Keep the object alive when loading new scenes
         DontDestroyOnLoad(this.gameObject);
-    }*/
+    }
 
     void Start()
     {
-        //_pauseMenuUI = _pauseMenuCanvas.transform.Find("PauseMenuUI").gameObject;
-        //_pauseMenuUI.GetComponent<CanvasGroup>().alpha = 0f;
+        _pauseMenuCanvasGroup = this.gameObject.GetComponent<CanvasGroup>();
+        _pauseMenuCanvasGroup.alpha = 0f;
+        _pauseMenuCanvasGroup.blocksRaycasts = false;
     }
 
     // Update is called once per frame
@@ -42,16 +43,16 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        //_pauseMenuUI.GetComponent<CanvasGroup>().alpha = 0f;
-        _pauseMenuUI.SetActive(false);
+        _pauseMenuCanvasGroup.alpha = 0f;
+        _pauseMenuCanvasGroup.blocksRaycasts = false;
         Time.timeScale = 1f; // Resume normal game time
         isGamePaused = false;
     }
 
     public void PauseGame()
     {
-        //_pauseMenuUI.GetComponent<CanvasGroup>().alpha = 1f;
-        _pauseMenuUI.SetActive(true);
+        _pauseMenuCanvasGroup.alpha = 1f;
+        _pauseMenuCanvasGroup.blocksRaycasts = true;
         Time.timeScale = 0f; // Stop all time-based operations (movement, physics, yap)
         isGamePaused = true;
     }
