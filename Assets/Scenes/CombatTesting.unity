@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0e5f2f5a0b0cb468bc4ffceb0c7dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifyAmount: 0
+  modifyAmount: 1
 --- !u!4 &562445897
 Transform:
   m_ObjectHideFlags: 0
@@ -985,6 +985,22 @@ PrefabInstance:
       propertyPath: AttackPrefab
       value: 
       objectReference: {fileID: 1564101308445595403, guid: d6c0c607ed55bc542921952248ca1ac3, type: 3}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1939883182}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1216016365}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1988249062}
+    - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+      propertyPath: 'inventorySlots.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1494164523}
     - target: {fileID: 6348212790741960469, guid: 612aec158e830d9498b4fa7319733287, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1176,8 +1192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803886927d26faa4fb3ed1fd04943a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifyAmountOrpheus: 0
-  modifyAmountEurydice: 0
+  modifyAmountOrpheus: 1.2
+  modifyAmountEurydice: 0.8
 --- !u!4 &1042062298
 Transform:
   m_ObjectHideFlags: 0

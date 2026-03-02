@@ -59,6 +59,19 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //Set up listeners on buttons
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i] == null)
+            {
+                Debug.LogError($"Inventory Slot {i} Does not exist!");
+                continue;
+            }
+            //Seems like passing in i directly is causing issues
+            int index = i;
+            inventorySlots[i].onClick.AddListener(() => MoveItem(index));
+        }
+
     }
 
 
@@ -71,18 +84,8 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Set up listeners on buttons
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            if(inventorySlots[i] == null)
-            {
-                Debug.LogError($"Inventory Slot {i} Does not exist!");
-                continue;
-            }
-            //Seems like passing in i directly is causing issues
-            int index = i;
-            inventorySlots[i].onClick.AddListener(() => MoveItem(index));
-        }
+        Debug.Log("started");
+
     }
 
     // Update is called once per frame
@@ -106,7 +109,7 @@ public class GameManager : MonoBehaviour
     //There is absolutely a better way to indicate spots I'm just tired and can't think of it rn
     public void MoveItem(int i)
     {
-
+        Debug.Log("moving");
         //No selected item, store the one in the corresponding array slot
         if (selectedItem == null)
         {
