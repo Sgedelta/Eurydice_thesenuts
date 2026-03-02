@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorType: 0
-  _doorScene: Room2
+  _doorScene: Room3
   _canvas: {fileID: 0}
 --- !u!61 &3810054805516378139
 BoxCollider2D:
