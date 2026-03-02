@@ -37,7 +37,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     void Start()
     {
         //DEBUG--REMOVE LATER
-       // EquipItem(0, TEMPITEM);
+        EquipItem(0, TEMPITEM);
         Debug.Log("Orpheus Inventory:" + EquippedItems[0] + EquippedItems[1]);
     }
 
