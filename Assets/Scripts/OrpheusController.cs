@@ -18,10 +18,13 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     public float AttackSpeed { get; set; } = 1;
     public float AttackMissAllowance { get; set; } = 1;
     public float AttackPerfectAllowance { get; set; } = 1;
-    public float AttackDamage { get; set; } = 1;
+    public float AttackDamage { get; set; } = 10;
 
     public float DamageTaken { get; set; } = 1;
     public float Morale { get; set; } = 100;
+    public float MaxMorale { get; set; } = 100;
+
+    public float MoralePercent { get { return Morale/MaxMorale; } }
 
     public bool IsAlive { get { return Morale > 0; } }
 
@@ -47,11 +50,13 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     public void ChangeMorale(float moraleChange)
     {
         Morale += moraleChange;
+        Morale = Mathf.Clamp(Morale, 0, MaxMorale);
     }
 
     public void SetMorale(float morale)
     {
         Morale = morale;
+        Morale = Mathf.Clamp(Morale, 0, MaxMorale);
     }
 
     public Item EquipItem(int i, Item item)
@@ -116,6 +121,17 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         // - ON UI CLICK Update CombatChoice then update combatDecisionMade (through a diff method)
         // - Hide UI (attack will be made by GameManager)
 
+        //Chud Random For Variation I Guess!
+        //TODO: Remove and move to UI And actual player choice!!
+        switch(UnityEngine.Random.Range(0, 3))
+        {
+            case 0: //one third of the time, do a heavy attack
+                CombatChoice = OrpheusDecision.HeavyAttack;
+                break;
+            default: //the 2 thirds of the time do a light attack
+                CombatChoice = OrpheusDecision.LightAttack;
+                break;
+        }
 
         combatDecisionMade = true; //TODO: REMOVE ONCE LOGIC FOR GAMEPLAY IS DONE
 

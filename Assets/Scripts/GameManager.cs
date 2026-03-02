@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float missThresh = .5f; //if attack total is less than this, it counts as a full miss
     [SerializeField] private float fullHitThresh = .8f; //if attack total is greater than this, it counts as a full hit
 
+    public HealthBar ActiveHealthBar;
+
     //References to UIs to enable/disable
     //TODO: all placeholder UIs currently, this may be removed/adjusted
     [SerializeField] private GameObject EquipUI;
@@ -286,6 +288,10 @@ public class GameManager : MonoBehaviour
                                 }
                                 
                             }
+                            //setup orpheus data for this attack
+                            Orpheus.AttackDamage = 10;
+
+                            //attack.
                             attack.SetupTargets(LightAttackStringPositions, activeStrings);
                             break;
 
@@ -303,7 +309,7 @@ public class GameManager : MonoBehaviour
                             //build bool array
                             for (int i = 0; i < HeavyAttackStringPositions; i++)
                             {
-                                if (activeStringIndexes.Contains(activeStringIndexes[i]))
+                                if (activeStringIndexes.Contains(i))
                                 {
                                     activeStrings.Add(true);
                                 }
@@ -313,6 +319,10 @@ public class GameManager : MonoBehaviour
                                 }
 
                             }
+                            //setup orpheus data for this attack
+                            Orpheus.AttackDamage = 20;
+
+                            //attack
                             attack.SetupTargets(HeavyAttackStringPositions, activeStrings);
                             break;
                     } //end attack setup switch
@@ -353,19 +363,38 @@ public class GameManager : MonoBehaviour
 
             }
 
+            ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, CurrentEnemy.MoralePercent);
+
             turn = (turn + 1) % 3;
         }
 
         //handle combat output
+        if(Orpheus.IsAlive)
+        {
+            //enemy died
+
+            //playtest temp code:
+            Enemy OldEnemy = CurrentEnemy;
+            Instantiate(OldEnemy);
+            Destroy(OldEnemy.gameObject);
+        } else
+        {
+            //Orpheus died:
+            //game over!
+            //RIP in Fart for playtest for now
+        }
 
 
 
-        yield return null;
+
+            yield return null;
     }
 
     public void StartCombat(Enemy e)
     {
         CurrentEnemy = e;
+
+        ActiveHealthBar.HaveEnemyHealth = true;
 
         StartCoroutine(RunCombat());
     }

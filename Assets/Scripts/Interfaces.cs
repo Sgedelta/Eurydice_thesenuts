@@ -69,6 +69,8 @@ public interface IHasMorale
     /// </summary>
     public float Morale { get; set; }
 
+    public float MaxMorale { get; set; }
+
     /// <summary>
     /// returns if Morale is positive
     /// </summary>

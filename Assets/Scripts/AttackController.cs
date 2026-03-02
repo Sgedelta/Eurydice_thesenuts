@@ -86,17 +86,23 @@ public class AttackController : MonoBehaviour
                 if(hitDist <= perfectError)
                 {
                     targetHits[i] = 1;
+                    StartCoroutine(DisplayAttackHit());
                     break;
                 } 
                 else if(hitDist <= hitError) 
                 {
                     targetHits[i] = (hitDist - perfectError) / (hitError - perfectError);
+                    StartCoroutine(DisplayAttackPartialHit(targetHits[i]));
                     break;
                 }
             }
         }
     }
 
+    public void SetupAttackData(float attackSpeed)
+    {
+        baseSpeed = attackSpeed;
+    }
 
     public void SetupTargets(int stringNum)
     {
@@ -177,6 +183,23 @@ public class AttackController : MonoBehaviour
         }
 
 
+    }
+
+
+    public IEnumerator DisplayAttackHit()
+    {
+        //bit of a chud version for playtesting...
+        InDisplay.GetComponent<SpriteRenderer>().color = Color.green;
+        yield return new WaitForSeconds(.2f);
+        InDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
+    }
+
+    public IEnumerator DisplayAttackPartialHit(float effectiveness)
+    {
+        //bit of a chud version for playtesting...
+        InDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(.2f);
+        InDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
     }
 
 
