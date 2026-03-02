@@ -19,6 +19,22 @@ public class AttackController : MonoBehaviour
     private List<GameObject> stringDisplayInstances;
     private List<Vector2> targetLocs;
     private List<float> targetHits;
+    public float PercentHit
+    {
+        get {
+            float ret = 0;
+
+            for (int i = 0; i < targetHits.Count; i++)
+            {
+                if (targetHits[i] > 0)
+                {
+                    ret += targetHits[i] / targetHits.Count;
+                }
+            }
+
+            return ret;
+        }
+    }
 
     private float attackCurrentPercent = 0;
     private Vector2 attackCurrPos = Vector2.zero;
@@ -33,8 +49,7 @@ public class AttackController : MonoBehaviour
 
     void Start()
     {
-        SetupTargets(7); //TEMP
-        StartCoroutine(MoveAttackIndicator()); //TEMP
+
     }
 
     private void Update()
@@ -81,6 +96,7 @@ public class AttackController : MonoBehaviour
             }
         }
     }
+
 
     public void SetupTargets(int stringNum)
     {
@@ -149,7 +165,7 @@ public class AttackController : MonoBehaviour
 
     }
 
-    IEnumerator MoveAttackIndicator()
+    public IEnumerator MoveAttackIndicator()
     {
         while(attackCurrentPercent < 1)
         {

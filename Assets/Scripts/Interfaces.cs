@@ -50,10 +50,10 @@ public interface ICanAttack
     public float AttackDamage { get; set; }
 
     /// <summary>
-    /// An attack method, which takes an effectiveness (how accurately you hit the notes)
+    /// An attack method, which takes an effectiveness (how accurately you hit the notes) and something with Morale
     /// </summary>
     /// <param name="effectiveness"></param>
-    public void Attack(float effectiveness);
+    public void Attack(float effectiveness, IHasMorale target);
 
     /// <summary>
     /// A event that is called on attack. Takes the effectiveness passed into attack. 
@@ -62,6 +62,28 @@ public interface ICanAttack
     public System.Action<float> OnAttack { get; set; }
 }
 
+public interface IHasMorale
+{
+    /// <summary>
+    /// Morale, a representation of the willpower of the character, acts as health
+    /// </summary>
+    public float Morale { get; set; }
 
+    /// <summary>
+    /// returns if Morale is positive
+    /// </summary>
+    public bool IsAlive { get; }
+
+    /// <summary>
+    /// Change Morale by the given amount
+    /// </summary>
+    /// <param name="moraleChange"></param>
+    public void ChangeMorale(float moraleChange);
+
+
+    public void SetMorale(float morale);
+
+
+}
 
 

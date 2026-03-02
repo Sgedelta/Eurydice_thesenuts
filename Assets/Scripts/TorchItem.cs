@@ -25,12 +25,32 @@ public class TorchItem : Item
     }
     public override void EurydiceAbility(OrpheusController control)
     {
+        //check for allowed activation
+        try
+        {
+            base.EurydiceAbility(control);
+        }
+        catch (System.Exception e)
+        {
+            return;
+        }
+
         //Assumes modify amount is < 1
         control.DamageTaken *= modifyAmount;
     }
 
     public override void EurydiceEndAbility(OrpheusController control)
     {
+        //check for allowed deactivation
+        try
+        {
+            base.EurydiceEndAbility(control);
+        }
+        catch (System.Exception e)
+        {
+            return;
+        }
+
         control.DamageTaken /= modifyAmount;
     }
 }

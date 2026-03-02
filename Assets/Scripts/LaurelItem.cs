@@ -24,11 +24,32 @@ public class LaurelItem : Item
     }
     public override void EurydiceAbility(OrpheusController control)
     {
+        //check for allowed activation
+        try
+        {
+            base.EurydiceAbility(control);
+        }
+        catch (System.Exception e)
+        {
+            return;
+        }
+
+
         control.AttackSpeed *= modifyAmountEurydice;
     }
 
     public override void EurydiceEndAbility(OrpheusController control)
     {
+        //check for allowed deactivation
+        try
+        {
+            base.EurydiceEndAbility(control);
+        }
+        catch (System.Exception e)
+        {
+            return;
+        }
+
         control.AttackSpeed /= modifyAmountEurydice;
     }
 }

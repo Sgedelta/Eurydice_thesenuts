@@ -116,7 +116,7 @@ MonoBehaviour:
   stringActiveZone: 0.7
   InDisplay: {fileID: 9099292945298930577}
   StringDisplay: {fileID: 4395488444021446078}
-  baseSpeed: 0.1
+  baseSpeed: 0.25
   baseMissAllowance: 0.7
   basePerfectAllowance: 0.2
 --- !u!1 &3065111366359387279

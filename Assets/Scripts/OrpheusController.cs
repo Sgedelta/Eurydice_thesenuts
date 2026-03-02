@@ -1,6 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
-public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
+
+
+public enum OrpheusDecision
+{
+    LightAttack,
+    HeavyAttack
+}
+
+//for the definitions of interfaces, see Interfaces.cs
+public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMorale
 {
     public Item[] EquippedItems { get; set; } = new Item[2];
     [SerializeField] public Item TEMPITEM;
@@ -11,15 +21,20 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
     public float AttackDamage { get; set; } = 1;
 
     public float DamageTaken { get; set; } = 1;
+    public float Morale { get; set; } = 100;
 
-    //========= orpheus specific controls =========
+    public bool IsAlive { get { return Morale > 0; } }
+
+
+    public OrpheusDecision CombatChoice;
+    private bool combatDecisionMade = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //DEBUG--REMOVE LATER
-        EquipItem(0, TEMPITEM);
+       // EquipItem(0, TEMPITEM);
         Debug.Log("Orpheus Inventory:" + EquippedItems[0] + EquippedItems[1]);
     }
 
@@ -27,6 +42,16 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
     void Update()
     {
         
+    }
+
+    public void ChangeMorale(float moraleChange)
+    {
+        Morale += moraleChange;
+    }
+
+    public void SetMorale(float morale)
+    {
+        Morale = morale;
     }
 
     public Item EquipItem(int i, Item item)
@@ -75,9 +100,44 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack
         return false;
     }
 
-    public void Attack(float effectiveness)
+    public void Attack(float effectiveness, IHasMorale target)
     {
-        OnAttack.Invoke(effectiveness);
-        throw new NotImplementedException();
+        target.ChangeMorale(effectiveness * AttackDamage * -1);
+
+
+        //OnAttack.Invoke(effectiveness); //update a bit later: idk if we use this lol -Sam
     }
+
+
+    public IEnumerator GetCombatChoice()
+    {
+        //CHUD VERSION. This should follow this process:
+        // - Show UI
+        // - ON UI CLICK Update CombatChoice then update combatDecisionMade (through a diff method)
+        // - Hide UI (attack will be made by GameManager)
+
+
+        combatDecisionMade = true; //TODO: REMOVE ONCE LOGIC FOR GAMEPLAY IS DONE
+
+        while(!combatDecisionMade)
+        {
+            yield return null;
+        }
+        combatDecisionMade=false; //for next time
+
+    }
+
+    public void ChooseLightAttack()
+    {
+        CombatChoice = OrpheusDecision.LightAttack;
+        combatDecisionMade = true;
+    }
+
+    public void ChooseHeavyAttack()
+    {
+        CombatChoice = OrpheusDecision.HeavyAttack;
+        combatDecisionMade = true;
+    }
+
+
 }
