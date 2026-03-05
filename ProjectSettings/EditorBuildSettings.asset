@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CombatTesting.unity
     guid: 67787747d7db23a4ea6cd7eb5eda11a3
+  - enabled: 1
+    path: Assets/Scenes/Sam_TestScenes/RoomDataTestingTwo.unity
+    guid: c7371e13ccc0ce448808ed0352c802ec
+  - enabled: 1
+    path: Assets/Scenes/Sam_TestScenes/RoomDataTestingOne.unity
+    guid: 1c3b7f1ac9323cb468e6a7aef4bee8bd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SetupMapDimensions(2, 2); //TEMP
         }
         //awake should never be called twice but. just in case!
         else if (instance != this)
