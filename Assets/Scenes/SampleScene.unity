@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1509,7 +1509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803886927d26faa4fb3ed1fd04943a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifyAmount: 0
+  modifyAmountOrpheus: 0
+  modifyAmountEurydice: 0
 --- !u!1 &1319367747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,6 +1677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TEMPITEM: {fileID: 1219763410}
+  HealAmount: 10
+  CombatChoice: 0
 --- !u!1 &1348824408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TEMPITEM: {fileID: 1521485475}
+  CombatChoice: 0
 --- !u!1 &1399954500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,7 +2752,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3015163953801594786}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d03d54a394c147e46a735ef6e6231a5e, type: 3}
   m_Name: 

@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     public int selectedItemIndex;
 
     //Inventory slots
-    //TODO: may adjust this setup later
     [SerializeField] private Button[] inventorySlots = new Button[4];
 
     private void Awake()
@@ -138,7 +137,11 @@ public class GameManager : MonoBehaviour
         //Empty slot
         else
         {
-            UpdateLabel(selectedItemIndex);
+            //Don't overwrite the label with empty if it's the og slot
+            if (!(selectedItemIndex == i))
+            {
+                UpdateLabel(selectedItemIndex);
+            }
         }
 
         Debug.Log("Eurydice Item 1: " + Eurydice.EquippedItems[0] + "Item 2: " + Eurydice.EquippedItems[1]);
