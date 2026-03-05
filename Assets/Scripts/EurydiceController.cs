@@ -91,7 +91,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
         // - Hide UI
 
 
-        combatDecisionMade = true; //TODO: REMOVE ONCE THE LOGIC FOR UI IS IN
+        //combatDecisionMade = true; //TODO: REMOVE ONCE THE LOGIC FOR UI IS IN
 
         while(!combatDecisionMade)
         {
