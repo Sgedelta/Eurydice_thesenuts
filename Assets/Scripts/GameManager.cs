@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
     //TODO: may adjust this setup later
     [SerializeField] private Button[] inventorySlots = new Button[4];
 
+
+    //Persistent Data setup: an array of room datas to hold what is at what position
+    private RoomData[] roomDatas;
+    public int MapWidth; 
+
     private void Awake()
     {
         //standard singleton
@@ -92,6 +97,36 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetupMapDimensions(int xSize, int ySize)
+    {
+        if(roomDatas != null)
+        {
+            roomDatas = null; //I'm 99% sure I don't have to dispose of the array and GC will clean this...
+        }
+
+        roomDatas = new RoomData[xSize * ySize];
+    }
+
+    public RoomData GetRoomDataAtLoc(int x, int y)
+    {
+        if((y * x) + x >= roomDatas.Length)
+        {
+            throw new ArgumentOutOfRangeException($"Position {x}, {y} is out of range of Room Datas. must be within room datas of bounds {MapWidth}, {roomDatas.Length / MapWidth}");
+        }
+
+        return roomDatas[x * y + x];
+    }
+
+    public void SetRoomDataAtLoc(int x, int y, RoomData data)
+    {
+        if ((y * x) + x >= roomDatas.Length)
+        {
+            throw new ArgumentOutOfRangeException($"Position {x}, {y} is out of range of Room Datas. must be within room datas of bounds {MapWidth}, {roomDatas.Length / MapWidth}");
+        }
+
+        roomDatas[x * y + x] = data;
     }
 
     //Toggles inventory UI

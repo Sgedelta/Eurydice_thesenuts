@@ -6,15 +6,9 @@ using UnityEngine.UI;
 
 public class Door : MonoBehaviour, IPointerClickHandler
 {
-    // An enum that distinguishes this door's type
-    private enum DoorType 
-    { 
-        Monster, 
-        Item
-    };
     
     [Header("Door Type")]
-    [SerializeField] private DoorType _doorType;
+    [SerializeField] private RoomType _doorType;
 
     [Tooltip("The next room (scene) this door leads to")]
     [Header("Door Load Scene")]

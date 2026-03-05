@@ -88,4 +88,12 @@ public interface IHasMorale
 
 }
 
-
+// An enum that distinguishes this door's type
+public enum RoomType
+{
+    NONE,
+    Monster,
+    Item,
+    Rest,
+    Starting
+};
