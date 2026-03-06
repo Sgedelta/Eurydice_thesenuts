@@ -47,7 +47,18 @@ public class GameManager : MonoBehaviour
 
     //Persistent Data setup: an array of room datas to hold what is at what position
     private RoomData[] roomDatas;
-    public int MapWidth; 
+    public int MapWidth;
+
+    private Vector2Int lastVisitedRoom = new Vector2Int(-1, -1);
+    private int lastVisitedRoomIndex = -1;
+    public Vector2Int LastVisitedRoom { get { return lastVisitedRoom; } set
+        {
+            lastVisitedRoom = value;
+            lastVisitedRoomIndex = value.x * value.y + value.x;
+        }
+    }
+
+    public RoomManager LastVisitedRoomManager;
 
     private void Awake()
     {
@@ -413,9 +424,8 @@ public class GameManager : MonoBehaviour
             //enemy died
 
             //playtest temp code:
-            Enemy OldEnemy = CurrentEnemy;
-            Instantiate(OldEnemy);
-            Destroy(OldEnemy.gameObject);
+            Destroy(CurrentEnemy.gameObject);
+            LastVisitedRoomManager.SetCompleted(true);
         } else
         {
             //Orpheus died:

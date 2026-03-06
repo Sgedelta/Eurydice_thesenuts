@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -6,18 +7,23 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] RoomData roomData;
 
-    public void Awake()
-    {
-        //first, check if the game manager has data at this location
 
+    [SerializeField] GameObject[] doorObjects;
+
+    public void OnEnable() //OnEnable runs between Awake and Start... have to do it here so that GameManager can make sure its here.
+    {
+
+        //first, check if the game manager and it's data exists
         if (GameManager.instance == null)
         {
-            new WaitForEndOfFrame();
+            Debug.LogWarning("[RM] Game Manager Instance not Found! waiting one frame...");
+            StartCoroutine(WaitOneFrameAndRestart());
+            return;
         }
-
+        
         if (roomData == null)
         {
-            Debug.LogError("[RM] Room Manager's room Data was null!");
+            Debug.LogError("[RM] Room Manager's Room Data Array was null!");
             return;
         }
 
@@ -32,8 +38,38 @@ public class RoomManager : MonoBehaviour
             GameManager.instance.SetRoomDataAtLoc(roomData.Position.x, roomData.Position.y, roomData);
         }
 
+        GameManager.instance.LastVisitedRoom = roomData.Position;
+        GameManager.instance.LastVisitedRoomManager = this;
     }
 
+    public void Start()
+    {
+        //roomData is correct now, because we've already run OnEnable
+        //now we need to update the state of the game based on that information
+        SetDoorsToCompletion();
+    }
+
+    public void SetCompleted(bool completed)
+    {
+        roomData.Completed = completed;
+        SetDoorsToCompletion();
+    }
+
+    public void SetDoorsToCompletion()
+    {
+        foreach(GameObject door in doorObjects)
+        {
+            door.SetActive(roomData.Completed);
+        }
+    }
+
+
+    public IEnumerator WaitOneFrameAndRestart()
+    {
+        yield return null;
+        OnEnable();
+        Start();
+    }
 }
 
 [Serializable]
