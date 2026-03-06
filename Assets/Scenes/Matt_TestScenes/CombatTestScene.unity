@@ -982,9 +982,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2051161017}
     - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
-      propertyPath: AttackPrefab
-      value: 
-      objectReference: {fileID: 1564101308445595403, guid: d6c0c607ed55bc542921952248ca1ac3, type: 3}
+      propertyPath: _delayTimeBetweenChoices
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3561623794649868399, guid: 612aec158e830d9498b4fa7319733287, type: 3}
       propertyPath: 'inventorySlots.Array.data[0]'
       value: 
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 754218045}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d03d54a394c147e46a735ef6e6231a5e, type: 3}
   m_Name: 
