@@ -26,6 +26,10 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
 
     public float MoralePercent { get { return Morale/MaxMorale; } }
 
+    //Used to update display size, this goes up as max morale goes up
+    //ie 5% boost of max morale plus 5% boost to display percent at the same time
+    public float MoraleDisplayPercent { get; set; } = 0.7f;
+
     public bool IsAlive { get { return Morale > 0; } }
 
 

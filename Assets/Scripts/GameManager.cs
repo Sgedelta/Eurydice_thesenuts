@@ -44,6 +44,13 @@ public class GameManager : MonoBehaviour
     //TODO: may adjust this setup later
     [SerializeField] private Button[] inventorySlots = new Button[4];
 
+    //XP system
+    //Enemies give 2 exp each, each time you level up it adds +2 to the amount needed to level up
+    //TODO: varying amounts of exp depending on enemy type?
+    private int currentXP = 0;
+    private int level = 1;
+    private int nextLevelXP = 4;
+
     private void Awake()
     {
         //standard singleton
@@ -366,7 +373,7 @@ public class GameManager : MonoBehaviour
 
             }
 
-            ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, CurrentEnemy.MoralePercent);
+            ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, Orpheus.MoraleDisplayPercent, CurrentEnemy.MoralePercent);
 
             turn = (turn + 1) % 3;
         }
@@ -375,6 +382,24 @@ public class GameManager : MonoBehaviour
         if(Orpheus.IsAlive)
         {
             //enemy died
+
+            //add exp and handle level up if needed
+            //TODO: varying exp values on enemy types?
+            currentXP += 2;
+
+            if (currentXP >= nextLevelXP)
+            {
+                level++;
+                currentXP -= nextLevelXP;
+                nextLevelXP += 2;
+
+                Debug.Log($"Level up! Level {level}");
+
+                //Updates max morale and display percent
+                Orpheus.MaxMorale += 10;
+                Orpheus.MoraleDisplayPercent += 0.05f;
+                ActiveHealthBar.ScaleHealthBG(Orpheus.MoraleDisplayPercent);
+            }
 
             //playtest temp code:
             Enemy OldEnemy = CurrentEnemy;
