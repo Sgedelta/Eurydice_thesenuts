@@ -10,7 +10,10 @@ public class Door : MonoBehaviour, IPointerClickHandler
     private enum DoorType 
     { 
         Monster, 
-        Item
+        Item,
+        Restroom,
+        Start,
+        End
     };
     
     [Header("Door Type")]
