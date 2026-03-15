@@ -22,12 +22,16 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     public EurydiceDecision CombatChoice = EurydiceDecision.Heal;
     private bool combatDecisionMade = false;
 
+    private GameObject _eurydiceCombatPanel;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //DEBUG--REMOVE LATER
         EquipItem(0, TEMPITEM);
         Debug.Log("Eurydice Inventory:" + EquippedItems[0] + EquippedItems[1]);
+
+        _eurydiceCombatPanel = GameObject.FindWithTag("EurydiceCombatPanel");
     }
 
     // Update is called once per frame
@@ -90,15 +94,15 @@ public class EurydiceController : MonoBehaviour, ICanEquip
         // - ON UI CLICK: update CombatChoice, THEN update combatDecisionMade (via another method)
         // - Hide UI
 
+        _eurydiceCombatPanel.SetActive(true); // Show Combat UI
 
-        combatDecisionMade = true; //TODO: REMOVE ONCE THE LOGIC FOR UI IS IN
-
-        while(!combatDecisionMade)
+        while (!combatDecisionMade)
         {
             yield return null;
         }
         combatDecisionMade = false; //for next time
 
+        _eurydiceCombatPanel.SetActive(false); // Hide Combat UI
     }
 
     public void ChooseHeal()
@@ -116,6 +120,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     {
         CombatChoice = EurydiceDecision.Torch;
         combatDecisionMade = true;
+        Debug.Log("torched");
     }
 
 

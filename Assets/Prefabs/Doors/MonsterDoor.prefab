@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e47479643bfe3a4d8290640fb9f7836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorType: 0
+  _doorType: 1
   _doorScene: Room3
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 7310287507051656915, guid: 65deb708d322d2444b5833fd12ca9b50, type: 3}
 --- !u!61 &3810054805516378139
 BoxCollider2D:
   m_ObjectHideFlags: 0

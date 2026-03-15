@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         // If an instance already exists and it's not this, destroy this one
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
             return;
@@ -27,23 +28,25 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         _pauseMenuCanvasGroup = this.gameObject.GetComponent<CanvasGroup>();
-        _pauseMenuCanvasGroup.alpha = 0f;
         _pauseMenuCanvasGroup.blocksRaycasts = false;
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isGamePaused) ResumeGame();
-            else PauseGame();
-        }
+
+    }
+
+    public void OnPause(InputAction.CallbackContext ctx)
+    {
+        if (isGamePaused) ResumeGame();
+        else PauseGame();
     }
 
     public void ResumeGame()
     {
-        _pauseMenuCanvasGroup.alpha = 0f;
+        this.gameObject.SetActive(false);
         _pauseMenuCanvasGroup.blocksRaycasts = false;
         Time.timeScale = 1f; // Resume normal game time
         isGamePaused = false;
@@ -51,7 +54,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        _pauseMenuCanvasGroup.alpha = 1f;
+        this.gameObject.SetActive(true);
         _pauseMenuCanvasGroup.blocksRaycasts = true;
         Time.timeScale = 0f; // Stop all time-based operations (movement, physics, yap)
         isGamePaused = true;

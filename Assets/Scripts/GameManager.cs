@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     //TODO: may adjust this setup later
     [SerializeField] private Button[] inventorySlots = new Button[4];
 
+    // Delay Time between player input choices
+    [Header("Delay Time")]
+    [SerializeField] private float _delayTimeBetweenChoices = 1f;
+
     private void Awake()
     {
         //standard singleton
@@ -252,6 +256,9 @@ public class GameManager : MonoBehaviour
                             }
                             break;
                     }
+
+                    // Apply a delay time between Eurydice input choice and Orpheus input choice
+                    yield return new WaitForSeconds(_delayTimeBetweenChoices);
                     break;
 
                 case 1: //O
