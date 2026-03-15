@@ -26,6 +26,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sam_TestScenes/RoomDataTestingOne.unity
     guid: 1c3b7f1ac9323cb468e6a7aef4bee8bd
+  - enabled: 1
+    path: Assets/Scenes/Map1/M1_Entrance.unity
+    guid: 306ba8c81ba34a44fb58c5b14b7a08ce
+  - enabled: 1
+    path: Assets/Scenes/Map1/M1_C1.unity
+    guid: 1041d045b9b7520428501034bb2243d3
+  - enabled: 1
+    path: Assets/Scenes/Map1/M1_I1.unity
+    guid: c1634181678437d4999d28cc3b170bfd
+  - enabled: 1
+    path: Assets/Scenes/Map1/M1_I2.unity
+    guid: bf8a38a3854f6434391c6cb4cd38bf3d
+  - enabled: 1
+    path: Assets/Scenes/Map1/M1_C2.unity
+    guid: 77d5ffb358be0c344a96a7c350a15e4c
+  - enabled: 1
+    path: Assets/Scenes/Map1/M1_R1.unity
+    guid: 35c6eb69ae2662344b5cccc039a74939
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

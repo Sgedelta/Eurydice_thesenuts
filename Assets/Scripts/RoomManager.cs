@@ -80,4 +80,5 @@ public class RoomData
     public bool Completed = false;
 
     public Vector2Int Position;
+
 }
