@@ -32,6 +32,32 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     public OrpheusDecision CombatChoice;
     private bool combatDecisionMade = false;
 
+    //singleton
+    void Awake()
+    {
+        StartCoroutine(SetupSingleton());
+    }
+
+
+    public IEnumerator SetupSingleton()
+    {
+        while (GameManager.instance == null)
+        {
+            yield return null; //wait until GM exists...
+        }
+
+        if (GameManager.instance.Orpheus == null)
+        {
+            GameManager.instance.Orpheus = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (GameManager.instance.Orpheus != this)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -22,6 +22,32 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     public EurydiceDecision CombatChoice = EurydiceDecision.Heal;
     private bool combatDecisionMade = false;
 
+
+    void Awake()
+    {
+        StartCoroutine(SetupSingleton());
+    }
+
+
+    public IEnumerator SetupSingleton()
+    {
+        while(GameManager.instance == null)
+        {
+            yield return null; //wait until GM exists...
+        }
+
+        if(GameManager.instance.Eurydice == null)
+        {
+            GameManager.instance.Eurydice = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (GameManager.instance.Eurydice != this)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
