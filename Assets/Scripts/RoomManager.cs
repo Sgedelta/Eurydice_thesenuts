@@ -47,6 +47,19 @@ public class RoomManager : MonoBehaviour
         //roomData is correct now, because we've already run OnEnable
         //now we need to update the state of the game based on that information
         SetDoorsToCompletion();
+
+        switch (roomData.Type)
+        {
+            case RoomType.Starting:
+                SetCompleted(true);
+                break;
+
+            case RoomType.NONE:
+                Debug.LogError($"Room at {roomData.Position} not setup correctly! RoomType is NONE. Completing to keep game going forward.");
+                SetCompleted(true);
+
+                break;
+        }
     }
 
     public void SetCompleted(bool completed)
