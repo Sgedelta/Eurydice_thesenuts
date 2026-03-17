@@ -32,7 +32,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     public OrpheusDecision CombatChoice;
     private bool combatDecisionMade = false;
 
-    private GameObject _orpheusCombatPanel;
+    public GameObject OrpheusCombatPanel;
     //singleton
     void Awake()
     {
@@ -71,7 +71,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
 
         Debug.Log("Orpheus Inventory:" + EquippedItems[0] + EquippedItems[1]);
 
-        _orpheusCombatPanel = GameObject.FindWithTag("OrpheusCombatPanel");
+        OrpheusCombatPanel = GameObject.FindWithTag("OrpheusCombatPanel");
         
     }
 
@@ -155,7 +155,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         // - ON UI CLICK Update CombatChoice then update combatDecisionMade (through a diff method)
         // - Hide UI (attack will be made by GameManager)
 
-        _orpheusCombatPanel.SetActive(true); // Show Combat UI
+        OrpheusCombatPanel.SetActive(true); // Show Combat UI
 
         //Chud Random For Variation I Guess!
         //TODO: Remove and move to UI And actual player choice!!
@@ -175,7 +175,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         }
         combatDecisionMade=false; //for next time
 
-        _orpheusCombatPanel.SetActive(false); // Hide Combat UI
+        OrpheusCombatPanel.SetActive(false); // Hide Combat UI
     }
 
     public void ChooseLightAttack()

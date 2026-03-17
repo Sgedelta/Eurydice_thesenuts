@@ -22,7 +22,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     public EurydiceDecision CombatChoice = EurydiceDecision.Heal;
     private bool combatDecisionMade = false;
 
-    private GameObject _eurydiceCombatPanel;
+    public GameObject EurydiceCombatPanel;
 
 
     void Awake()
@@ -61,7 +61,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
 
         Debug.Log("Eurydice Inventory:" + EquippedItems[0] + EquippedItems[1]);
 
-        _eurydiceCombatPanel = GameObject.FindWithTag("EurydiceCombatPanel");
+        EurydiceCombatPanel = GameObject.FindWithTag("EurydiceCombatPanel");
     }
 
     // Update is called once per frame
@@ -124,7 +124,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
         // - ON UI CLICK: update CombatChoice, THEN update combatDecisionMade (via another method)
         // - Hide UI
 
-        _eurydiceCombatPanel.SetActive(true); // Show Combat UI
+        EurydiceCombatPanel.SetActive(true); // Show Combat UI
 
         while (!combatDecisionMade)
         {
@@ -132,7 +132,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
         }
         combatDecisionMade = false; //for next time
 
-        _eurydiceCombatPanel.SetActive(false); // Hide Combat UI
+        EurydiceCombatPanel.SetActive(false); // Hide Combat UI
     }
 
     public void ChooseHeal()

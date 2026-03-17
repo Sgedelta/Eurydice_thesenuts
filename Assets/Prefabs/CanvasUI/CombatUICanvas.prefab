@@ -412,9 +412,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EurydiceController, Assembly-CSharp
-        m_MethodName: ChooseHeal
+      - m_Target: {fileID: 414696017279434624}
+        m_TargetAssemblyTypeName: CombatUITranslator, Assembly-CSharp
+        m_MethodName: EDoHeal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -953,9 +953,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OrpheusController, Assembly-CSharp
-        m_MethodName: ChooseLightAttack
+      - m_Target: {fileID: 414696017279434624}
+        m_TargetAssemblyTypeName: CombatUITranslator, Assembly-CSharp
+        m_MethodName: ODoLightAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -977,6 +977,7 @@ GameObject:
   - component: {fileID: 2799787729676904498}
   - component: {fileID: 8392476642104724898}
   - component: {fileID: 2161827276248761278}
+  - component: {fileID: 414696017279434624}
   m_Layer: 5
   m_Name: CombatUICanvas
   m_TagString: Untagged
@@ -1068,6 +1069,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &414696017279434624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942054163171969592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8d3422a086a9446b6bb896d7ad8e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OCombatPanel: {fileID: 489331760382951042}
+  ECombatPanel: {fileID: 1528101443369418346}
 --- !u!1 &6162927629989475459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,9 +1204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OrpheusController, Assembly-CSharp
-        m_MethodName: ChooseHeavyAttack
+      - m_Target: {fileID: 414696017279434624}
+        m_TargetAssemblyTypeName: CombatUITranslator, Assembly-CSharp
+        m_MethodName: ODoHeavyAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1322,9 +1337,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EurydiceController, Assembly-CSharp
-        m_MethodName: ChooseLaurel
+      - m_Target: {fileID: 414696017279434624}
+        m_TargetAssemblyTypeName: CombatUITranslator, Assembly-CSharp
+        m_MethodName: EDoLaurel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1591,9 +1606,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EurydiceController, Assembly-CSharp
-        m_MethodName: ChooseTorch
+      - m_Target: {fileID: 414696017279434624}
+        m_TargetAssemblyTypeName: CombatUITranslator, Assembly-CSharp
+        m_MethodName: EDoTorch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
