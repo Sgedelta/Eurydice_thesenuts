@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6411355936498895287
+--- !u!1 &4393982928741617641
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5402533721786732769}
-  - component: {fileID: 6589959067758723187}
-  - component: {fileID: 7052554024707083654}
-  - component: {fileID: 216916619337969807}
+  - component: {fileID: 2296833037093435406}
+  - component: {fileID: 884561149302745291}
+  - component: {fileID: 6816521660028891136}
+  - component: {fileID: 3243760420138797297}
   m_Layer: 0
-  m_Name: MonsterDoor
+  m_Name: RestDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5402533721786732769
+--- !u!4 &2296833037093435406
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6411355936498895287}
+  m_GameObject: {fileID: 4393982928741617641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 5.92, y: -4.28, z: 0}
+  m_LocalPosition: {x: 0, y: -2.32, z: 0}
   m_LocalScale: {x: 1.8487, y: 2.3479, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &6589959067758723187
+--- !u!212 &884561149302745291
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6411355936498895287}
+  m_GameObject: {fileID: 4393982928741617641}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -89,28 +89,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7052554024707083654
+--- !u!114 &6816521660028891136
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6411355936498895287}
+  m_GameObject: {fileID: 4393982928741617641}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e47479643bfe3a4d8290640fb9f7836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorType: 1
+  _doorType: 3
   _doorScene: 
   _canvas: {fileID: 0}
---- !u!61 &216916619337969807
+--- !u!61 &3243760420138797297
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6411355936498895287}
+  m_GameObject: {fileID: 4393982928741617641}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
