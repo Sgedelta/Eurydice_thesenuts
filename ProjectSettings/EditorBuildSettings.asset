@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 3d8b87eddec4925438da7ae7d3bf30ec
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prefabs/Rooms/Room1.unity
     guid: 9214c1725090b374c9abb6303e22b5a3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prefabs/Rooms/Room2.unity
     guid: dae89a638866c0b4b84ecd3322f5737f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prefabs/Rooms/Room3.unity
     guid: 01f8625eb9e3fbd48914f5485aaa443e
   - enabled: 1

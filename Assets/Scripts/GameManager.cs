@@ -535,7 +535,10 @@ public class GameManager : MonoBehaviour
     {
         CurrentEnemy = e;
 
-        ActiveHealthBar.HaveEnemyHealth = true;
+        if(ActiveHealthBar != null)
+        {
+            ActiveHealthBar.HaveEnemyHealth = true;
+        }
 
         StartCoroutine(RunCombat());
     }

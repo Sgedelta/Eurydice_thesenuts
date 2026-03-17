@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour, IHasMorale
 
     private IEnumerator SetupOnNextFrame()
     {
-        while(GameManager.instance == null)
+        while(GameManager.instance == null && GameManager.instance.ActiveHealthBar == null)
         {
             yield return null;
         }
