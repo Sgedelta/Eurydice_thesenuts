@@ -281,6 +281,9 @@ public class GameManager : MonoBehaviour
         //combat setup
         int turn = 0; //whose turn is it? 0 - Eurydice, 1 - Orpheus, 2 - Enemy
 
+        Debug.Log($"Orpheus is: {Orpheus.name}");
+        Debug.Log($"Enemy is: {CurrentEnemy.name}");
+
         //combat running
         while(Orpheus.IsAlive && CurrentEnemy.IsAlive)
         {

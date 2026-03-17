@@ -54,6 +54,11 @@ public class RoomManager : MonoBehaviour
                 SetCompleted(true);
                 break;
 
+            //maybe temp??
+            case RoomType.Item:
+                SetCompleted(true); 
+                break;
+
             case RoomType.NONE:
                 Debug.LogError($"Room at {roomData.Position} not setup correctly! RoomType is NONE. Completing to keep game going forward.");
                 SetCompleted(true);

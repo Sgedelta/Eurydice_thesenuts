@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
@@ -17,6 +18,18 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(SetupOnceGMIsGood());
+
+    }
+
+    public IEnumerator SetupOnceGMIsGood()
+    {
+        while(GameManager.instance == null)
+        {
+            yield return null;
+        }
+
+
         BarStartingPos = OBar.transform.localPosition;
         BarStartingScale = OBar.transform.localScale.x;
 
@@ -25,7 +38,6 @@ public class HealthBar : MonoBehaviour
         EnemyBar.SetActive(false);
 
         GameManager.instance.ActiveHealthBar = this;
-
     }
 
 

@@ -52,7 +52,11 @@ public class EurydiceController : MonoBehaviour, ICanEquip
     void Start()
     {
         //DEBUG--REMOVE LATER
-        EquipItem(0, TEMPITEM);
+        if (TEMPITEM != null)
+        {
+            EquipItem(0, TEMPITEM);
+        }
+
         Debug.Log("Eurydice Inventory:" + EquippedItems[0] + EquippedItems[1]);
     }
 

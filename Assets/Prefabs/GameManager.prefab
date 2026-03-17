@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03d54a394c147e46a735ef6e6231a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackPrefab: {fileID: 1564101308445595403, guid: d6c0c607ed55bc542921952248ca1ac3, type: 3}
+  missThresh: 0.5
+  fullHitThresh: 0.8
+  ActiveHealthBar: {fileID: 0}
   EquipUI: {fileID: 0}
   GeneralUI: {fileID: 0}
   selectedItem: {fileID: 0}
@@ -53,5 +57,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  MapWidth: 0
+  LastVisitedRoomManager: {fileID: 0}
   Orpheus: {fileID: 0}
   Eurydice: {fileID: 0}
+  CurrentEnemy: {fileID: 0}
