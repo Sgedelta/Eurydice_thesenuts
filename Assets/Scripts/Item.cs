@@ -13,6 +13,7 @@ public abstract class Item : MonoBehaviour
      * e should -> ability/item selected -> call function -> function updates onattack
      */
     public abstract string name { get; }
+    public abstract string description { get; }
 
     protected int ActiveCount = 0;
     protected int MaxActiveCount = 1;

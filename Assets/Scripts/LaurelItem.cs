@@ -10,6 +10,7 @@ public class LaurelItem : Item
     //TODO: singleton behavior
 
     public override string name => "Laurel";
+    public override string description => "Orpheus Effect: Increases damage dealt and damage taken \n Eurydice Ability: Temporarily reduces attack speed";
 
     public override void OrpheusEquip(OrpheusController control)
     {

@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject EquipUI;
     [SerializeField] private GameObject GeneralUI;
 
+    //Description management for inventory ui
+    private Transform descObject;
+    private TextMeshProUGUI descText;
+
     //Used to temporarily "hold" an item to move between slots
     public Item selectedItem;
     public int selectedItemIndex;
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("started");
 
+        
     }
 
     // Update is called once per frame
@@ -156,6 +161,10 @@ public class GameManager : MonoBehaviour
     //There is absolutely a better way to indicate spots I'm just tired and can't think of it rn
     public void MoveItem(int i)
     {
+        //Gets the description panel
+        descObject = EquipUI.transform.Find("ItemDescription");
+        descText = descObject.GetComponent<TextMeshProUGUI>();
+
         Debug.Log("moving");
         //No selected item, store the one in the corresponding array slot
         if (selectedItem == null)
@@ -164,6 +173,15 @@ public class GameManager : MonoBehaviour
             selectedItem = RetrieveItem(i);
             selectedItemIndex = i;
             Debug.Log("Selected item: " + selectedItem);
+
+            //Adds the current item description if there's a selected item
+            if (selectedItem != null)
+            {
+                descObject.gameObject.SetActive(true);
+                descText.text = $"Selected Item: \n {selectedItem.name} \n {selectedItem.description}";
+            }
+            
+
             return;
         }
 
@@ -195,6 +213,10 @@ public class GameManager : MonoBehaviour
         //tbh index doesn't *need* to be wiped but just in case
         selectedItem = null;
         selectedItemIndex = -1;
+
+        //Clearing out and disabling item description
+        descObject.gameObject.SetActive(false);
+        descText.text = "";
 
         //Reset button highlight
 
