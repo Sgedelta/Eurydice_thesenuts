@@ -32,6 +32,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     public OrpheusDecision CombatChoice;
     private bool combatDecisionMade = false;
 
+    private GameObject _orpheusCombatPanel;
     //singleton
     void Awake()
     {
@@ -69,6 +70,9 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         }
 
         Debug.Log("Orpheus Inventory:" + EquippedItems[0] + EquippedItems[1]);
+
+        _orpheusCombatPanel = GameObject.FindWithTag("OrpheusCombatPanel");
+        
     }
 
     // Update is called once per frame
@@ -151,9 +155,11 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         // - ON UI CLICK Update CombatChoice then update combatDecisionMade (through a diff method)
         // - Hide UI (attack will be made by GameManager)
 
+        _orpheusCombatPanel.SetActive(true); // Show Combat UI
+
         //Chud Random For Variation I Guess!
         //TODO: Remove and move to UI And actual player choice!!
-        switch(UnityEngine.Random.Range(0, 3))
+        /*switch(UnityEngine.Random.Range(0, 3))
         {
             case 0: //one third of the time, do a heavy attack
                 CombatChoice = OrpheusDecision.HeavyAttack;
@@ -161,9 +167,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
             default: //the 2 thirds of the time do a light attack
                 CombatChoice = OrpheusDecision.LightAttack;
                 break;
-        }
-
-        combatDecisionMade = true; //TODO: REMOVE ONCE LOGIC FOR GAMEPLAY IS DONE
+        }*/
 
         while(!combatDecisionMade)
         {
@@ -171,6 +175,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         }
         combatDecisionMade=false; //for next time
 
+        _orpheusCombatPanel.SetActive(false); // Hide Combat UI
     }
 
     public void ChooseLightAttack()
