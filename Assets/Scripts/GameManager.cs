@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum GameState
 {
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
     //Description management for inventory ui
     private Transform descObject;
     private TextMeshProUGUI descText;
+
+    //Status popup for general ui
+    private Transform recieveObject;
+    private TextMeshProUGUI recieveText;
 
     //Used to temporarily "hold" an item to move between slots
     public Item selectedItem;
@@ -268,6 +273,54 @@ public class GameManager : MonoBehaviour
 
         
         return previousItem;
+    }
+
+    //Equips item in first empty slot
+    public void AutoEquip(GameObject item)
+    {
+        //Merging the two arrays for checking purposes
+        //Didn't think to do this with earlier stuff, will go back and clean up later
+
+        Item[] fullInventory = Orpheus.EquippedItems.Concat(Eurydice.EquippedItems).ToArray();
+
+        //Loops through the inventory slots to find the first empty one
+        for (int i = 0; i < fullInventory.Length; i++)
+        {
+            Debug.Log(fullInventory[i]);
+            //Empty spot found
+            if (fullInventory[i] == null)
+            {
+                Debug.Log(i);
+                //Place item in the corresponding inventory, need to access og arrays
+                if (i <= 1)
+                {
+                    Orpheus.EquipItem(i, item.GetComponent<Item>());
+                }
+                else
+                {
+                    Eurydice.EquipItem(i - 2, item.GetComponent<Item>());
+                }
+
+                //Makes sure general ui is on
+                if (!GeneralUI.activeSelf)
+                {
+                    ToggleInventory();
+                }
+
+                //Enables popup
+                recieveObject = GeneralUI.transform.Find("ItemRecieve");
+          
+                recieveText = recieveObject.GetComponent<TextMeshProUGUI>();
+                recieveObject.gameObject.SetActive(true);
+
+                string itemName = item.GetComponent<Item>().name;
+                UpdateLabel(i, itemName);
+                recieveText.text = $"You recieved a {itemName}";
+
+                //End the loop here
+                break;
+            }
+        }
     }
 
     //Updates label for the inventory slot

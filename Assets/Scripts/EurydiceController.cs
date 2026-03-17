@@ -73,6 +73,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
 
     public Item EquipItem(int i, Item item)
     {
+
         Item previousItem = EquippedItems[i];
 
         //Properly unequip previous item
