@@ -1783,6 +1783,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3437825987109816807, guid: 24ed18e3cb0a5844284e696f52daa692, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3903083929664952714, guid: 24ed18e3cb0a5844284e696f52daa692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
