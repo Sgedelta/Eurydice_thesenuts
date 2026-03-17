@@ -9,6 +9,8 @@ public class TorchItem : Item
     //TODO: singleton behavior
     public override string name => "Torch";
 
+    public override string description => "Orpheus Effect: Makes it easier to land attacks \n Eurydice Ability: Temporarily reduce damage taken";
+
     public override void OrpheusEquip(OrpheusController control)
     {
         //Modifies attack hitbox via increasing perfect allowing and decreasing miss allowance 
