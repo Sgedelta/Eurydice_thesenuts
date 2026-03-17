@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviour
 
 
     [SerializeField] GameObject[] doorObjects;
+    [SerializeField] GameObject[] objectsToKill;
 
     public void OnEnable() //OnEnable runs between Awake and Start... have to do it here so that GameManager can make sure its here.
     {
@@ -40,6 +41,15 @@ public class RoomManager : MonoBehaviour
 
         GameManager.instance.LastVisitedRoom = roomData.Position;
         GameManager.instance.LastVisitedRoomManager = this;
+
+
+        if (GameManager.instance.LastVisitedRoomManager.roomData.Completed)
+        {
+            for (int i = objectsToKill.Length - 1; i >= 0; i--)
+            {
+                Destroy(objectsToKill[i]);
+            }
+        }
     }
 
     public void Start()
@@ -52,11 +62,6 @@ public class RoomManager : MonoBehaviour
         {
             case RoomType.Starting:
                 SetCompleted(true);
-                break;
-
-            //maybe temp??
-            case RoomType.Item:
-                SetCompleted(true); 
                 break;
 
             case RoomType.NONE:

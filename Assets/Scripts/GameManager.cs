@@ -86,6 +86,12 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
         {
             Debug.LogWarning($"Destroying {name} due to the static instance of GameManager already being on {GameManager.instance.name}");
+            //pass on our data on (the old gm will need it as it's loading into this scene)
+            GameManager.instance.GeneralUI = GeneralUI;
+            GameManager.instance.EquipUI = EquipUI;
+            GameManager.instance.inventorySlots = inventorySlots;
+
+
             Destroy(this.gameObject);
         }
 
@@ -278,6 +284,7 @@ public class GameManager : MonoBehaviour
     //Equips item in first empty slot
     public void AutoEquip(GameObject item)
     {
+
         //Merging the two arrays for checking purposes
         //Didn't think to do this with earlier stuff, will go back and clean up later
 

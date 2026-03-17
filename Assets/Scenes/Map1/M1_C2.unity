@@ -338,6 +338,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ed57a8549d8d74fb110fb17cc55d48, type: 3}
+--- !u!1 &331544102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7374283676994049711, guid: b1ed57a8549d8d74fb110fb17cc55d48, type: 3}
+  m_PrefabInstance: {fileID: 331544101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &457698727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -403,6 +408,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 489331760382951042, guid: da86845f11013204895d1df6fc3954de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528101443369418346, guid: da86845f11013204895d1df6fc3954de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5942054163171969592, guid: da86845f11013204895d1df6fc3954de, type: 3}
       propertyPath: m_Name
       value: CombatUICanvas
@@ -1332,6 +1345,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
+      propertyPath: objectsToKill.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: 'doorObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 707694337}
@@ -1347,6 +1364,14 @@ PrefabInstance:
       propertyPath: 'doorObjects.Array.data[3]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
+      propertyPath: 'objectsToKill.Array.data[0]'
+      value: 
+      objectReference: {fileID: 132709284}
+    - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
+      propertyPath: 'objectsToKill.Array.data[1]'
+      value: 
+      objectReference: {fileID: 331544102}
     - target: {fileID: 2827724665885030245, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
