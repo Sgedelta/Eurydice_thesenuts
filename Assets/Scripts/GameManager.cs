@@ -514,7 +514,7 @@ public class GameManager : MonoBehaviour
 
             }
 
-            ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, CurrentEnemy.MoralePercent);
+            ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, Orpheus.MoraleDisplayPercent, CurrentEnemy.MoralePercent);
 
             turn = (turn + 1) % 3;
         }
@@ -523,6 +523,13 @@ public class GameManager : MonoBehaviour
         if(Orpheus.IsAlive)
         {
             //enemy died
+
+            //Add exp, can modify this if we want varying amounts
+            //Handles level up too
+            Orpheus.AddXP(2);
+
+            //Updates scaling to account for level up
+            ActiveHealthBar.ScaleHealthBG(Orpheus.MoraleDisplayPercent);
 
             //playtest temp code:
             Destroy(CurrentEnemy.gameObject);

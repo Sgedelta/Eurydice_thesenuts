@@ -24,7 +24,18 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     public float Morale { get; set; } = 100;
     public float MaxMorale { get; set; } = 100;
 
+    //Xp system
+    //Enemies give 2 exp each, each time you level up it adds +2 to the amount needed to level up
+    //TODO: varying amounts of exp depending on enemy type?
+    public int CurrentXP { get; set; } = 0;
+    public int Level { get; set; } = 1;
+    public int NextLevelXP { get; set; } = 4;
+
     public float MoralePercent { get { return Morale/MaxMorale; } }
+
+    //Used to update display size, this goes up as max morale goes up
+    //ie 5% boost of max morale plus 5% boost to display percent at the same time
+    public float MoraleDisplayPercent { get; set; } = 0.7f;
 
     public bool IsAlive { get { return Morale > 0; } }
 
@@ -139,6 +150,33 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
 
         //No matching item
         return false;
+    }
+
+    //Adds set amount of exp and checks for level up
+    public void AddXP(int xp)
+    {
+        CurrentXP += xp;
+
+        if (CurrentXP > NextLevelXP)
+        {
+            LevelUp();
+        }
+    }
+
+
+    //Levels up Orpheus
+    public void LevelUp()
+    {
+        Level++;
+        CurrentXP -= NextLevelXP;
+        NextLevelXP += 2;
+
+        Debug.Log($"Level up! Level {Level}");
+
+        //Updates max morale andf display percent
+        MaxMorale += 10;
+        MoraleDisplayPercent += 0.55f;
+
     }
 
     public void Attack(float effectiveness, IHasMorale target)

@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OBar: {fileID: 5857391095182305564}
   EnemyBar: {fileID: 523306105064067443}
+  OBarBG: {fileID: 5635129657443224569}
 --- !u!212 &3058575410591164294
 SpriteRenderer:
   m_ObjectHideFlags: 0
