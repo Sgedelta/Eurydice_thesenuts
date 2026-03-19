@@ -357,9 +357,19 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Orpheus is: {Orpheus.name}");
         Debug.Log($"Enemy is: {CurrentEnemy.name}");
 
-        //combat running
-        while(Orpheus.IsAlive && CurrentEnemy.IsAlive)
+        int waitFramesForHealthbar = 100;
+        while (ActiveHealthBar == null && waitFramesForHealthbar > 0)
         {
+            waitFramesForHealthbar--;
+            yield return null;
+        }
+
+        ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, Orpheus.MoraleDisplayPercent, CurrentEnemy.MoralePercent);
+
+        //combat running
+        while (Orpheus.IsAlive && CurrentEnemy.IsAlive)
+        {
+
             GameManager.print($"Combat Data turn {turn}: Orpheus is at {Orpheus.Morale} and the enemy is at {CurrentEnemy.Morale}");
             switch(turn)
             {

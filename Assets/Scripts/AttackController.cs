@@ -109,12 +109,12 @@ public class AttackController : MonoBehaviour
         List<bool> activeStrings = new List<bool>();
         for (int i = 0; i < stringNum; i++)
         {
-            activeStrings.Add(true);
+            activeStrings.Add(true); //TODO: Change to Enum Normal
         }
         SetupTargets(stringNum, activeStrings);
     }
 
-    public void SetupTargets(int stringNum, List<bool> activeStrings)
+    public void SetupTargets(int stringNum, List<bool> activeStrings) //< change list bool here to list ENUM -> None, Normal, Bomb
     {
         if(activeStrings == null || activeStrings.Count != stringNum)
         {
@@ -128,7 +128,7 @@ public class AttackController : MonoBehaviour
         for(int i = 0; i < stringNum; i++)
         {
             //if the string is not active, skip it!
-            if (!activeStrings[i])
+            if (!activeStrings[i]) //TODO: Check if None Enum
             {
                 continue;
             }
@@ -143,6 +143,7 @@ public class AttackController : MonoBehaviour
             }
 
             //calculate a new position, add it to targetLocs
+            //TODO: ADD A BOMB????
             targetLocs.Add(Vector2.Lerp(InStart.transform.position, InEnd.transform.position, t));
             targetHits.Add(-1f); //add a miss in logs, for now
         }
