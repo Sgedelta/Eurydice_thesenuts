@@ -160,6 +160,7 @@ public class AttackController : MonoBehaviour
         {
             GameObject newString = Instantiate(StringDisplay, transform);
             newString.transform.position = targetLocs[i];
+            //TODO: MAKE BOMB HERE
 
             //if we wanted we could do a fun little math thing here and rotate them, but we'd need another point to make it look accurate and not parallel
             //which would also make the last part harder and... ugh.
