@@ -12,7 +12,7 @@ public enum OrpheusDecision
 //for the definitions of interfaces, see Interfaces.cs
 public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMorale
 {
-    public Item[] EquippedItems { get; set; } = new Item[2];
+    public Item[] EquippedItems { get; set; }
     [SerializeField] public Item TEMPITEM;
     public Action<float> OnAttack { get; set; } //to be used by Eurydice effects
     public float AttackSpeed { get; set; } = 1;
@@ -63,6 +63,8 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        EquippedItems = new Item[2];
+
         //DEBUG--REMOVE LATER
         if (TEMPITEM != null)
         {

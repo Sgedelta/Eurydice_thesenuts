@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             SetupMapDimensions(3, 3); //TEMP
+            SetupInvButtons();
         }
         //awake should never be called twice but. just in case!
         else if (instance != this)
@@ -91,22 +92,12 @@ public class GameManager : MonoBehaviour
             GameManager.instance.EquipUI = EquipUI;
             GameManager.instance.inventorySlots = inventorySlots;
 
+            GameManager.instance.SetupInvButtons();
 
             Destroy(this.gameObject);
         }
 
-        //Set up listeners on buttons
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            if (inventorySlots[i] == null)
-            {
-                Debug.LogError($"Inventory Slot {i} Does not exist!");
-                continue;
-            }
-            //Seems like passing in i directly is causing issues
-            int index = i;
-            inventorySlots[i].onClick.AddListener(() => MoveItem(index));
-        }
+        
 
     }
 
@@ -237,6 +228,23 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SetupInvButtons()
+    {
+        //Set up listeners on buttons
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i] == null)
+            {
+                Debug.LogError($"Inventory Slot {i} Does not exist!");
+                continue;
+            }
+            //Seems like passing in i directly is causing issues
+            int index = i;
+            inventorySlots[i].onClick.AddListener(() => MoveItem(index));
+        }
+    }
+
+
     //Helper for MoveItem, gets an item from an array based on button index
     //TODO: update this to remove some number hardcoding
     private Item RetrieveItem(int i)
@@ -250,7 +258,8 @@ public class GameManager : MonoBehaviour
         //Orpheus array
         else
         {
-            return Orpheus.EquippedItems[i];
+            Debug.Log(GameManager.instance.Orpheus);
+            return GameManager.instance.Orpheus.EquippedItems[i];
         }
     }
 
