@@ -7,6 +7,8 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] RoomData roomData;
 
+    public RoomData RoomData { get { return roomData; } }
+
 
     [SerializeField] GameObject[] doorObjects;
     [SerializeField] GameObject[] objectsToKill;
@@ -99,6 +101,8 @@ public class RoomManager : MonoBehaviour
 public class RoomData
 {
     public RoomType Type = RoomType.NONE;
+
+    public RoomModifier Modifier = RoomModifier.NONE;
 
     public bool Completed = false;
 
