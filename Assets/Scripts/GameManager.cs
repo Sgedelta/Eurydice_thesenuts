@@ -355,15 +355,21 @@ public class GameManager : MonoBehaviour
         int turn = 0; //whose turn is it? 0 - Eurydice, 1 - Orpheus, 2 - Enemy
 
         Debug.Log($"Orpheus is: {Orpheus.name}");
-        Debug.Log($"Enemy is: {CurrentEnemy.name}");
+        Debug.Log($"Enemy is: {CurrentEnemy.name} | {CurrentEnemy.MoralePercent}");
+        
 
         int waitFramesForHealthbar = 100;
         while (ActiveHealthBar == null && waitFramesForHealthbar > 0)
         {
             waitFramesForHealthbar--;
+            if(waitFramesForHealthbar == 0)
+            {
+                Debug.LogError("Healthbar was not initialized within 100 frames! Cancelling!");
+            }
             yield return null;
         }
 
+        ActiveHealthBar.HaveEnemyHealth = true;
         ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, Orpheus.MoraleDisplayPercent, CurrentEnemy.MoralePercent);
 
         //combat running
@@ -560,11 +566,6 @@ public class GameManager : MonoBehaviour
     public void StartCombat(Enemy e)
     {
         CurrentEnemy = e;
-
-        if(ActiveHealthBar != null)
-        {
-            ActiveHealthBar.HaveEnemyHealth = true;
-        }
 
         StartCoroutine(RunCombat());
     }

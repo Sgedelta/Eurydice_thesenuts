@@ -54,7 +54,7 @@ public class HealthBar : MonoBehaviour
     }
 
     public void SetHealthData(float OPercentLeft, float OrpheusMaxPercent, float EnemyPercentLeft = -1)
-    {     
+    {   
         ScaleHealthBG(OrpheusMaxPercent);
 
         //scale to correct size
