@@ -64,7 +64,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f; // Unfreeze time before loading a new scene
         SceneManager.LoadScene("MainMenu");
-        Destroy(this.gameObject);
     }
 
     public void QuitGame()
