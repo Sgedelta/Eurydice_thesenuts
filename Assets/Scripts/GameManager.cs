@@ -57,6 +57,9 @@ public class GameManager : MonoBehaviour
     [Header("Delay Time")]
     [SerializeField] private float _delayTimeBetweenChoices = 1f;
 
+    //TODO: proper setup for enabling bombs
+    public bool UseBombs { get; set; } = true;
+
 
     //Persistent Data setup: an array of room datas to hold what is at what position
     private RoomData[] roomDatas;
@@ -426,9 +429,9 @@ public class GameManager : MonoBehaviour
                     //handle input
                     AttackController attack = Instantiate(AttackPrefab).GetComponent<AttackController>();
                     List<int> activeStringIndexes = new List<int>();
-                    List<bool> activeStrings = new List<bool>();
+                    List<TargetType> activeStrings = new List<TargetType>();
                     
-
+                    //TODO: putting a todo here so i can ctrl f here. makin bombs
                     switch(Odecision)
                     {
                         case OrpheusDecision.LightAttack:
@@ -447,11 +450,20 @@ public class GameManager : MonoBehaviour
                             {
                                 if (activeStringIndexes.Contains(i))
                                 {
-                                    activeStrings.Add(true);
+                                    //Get random number, if < 3, BOMB
+                                    int rng = UnityEngine.Random.Range(0, 10);
+                                    if (rng < 1 && UseBombs)
+                                    {
+                                        activeStrings.Add(TargetType.Bomb);
+                                    }
+                                    else
+                                    {
+                                        activeStrings.Add(TargetType.Normal);
+                                    }
                                 } 
                                 else
                                 {
-                                    activeStrings.Add(false);
+                                    activeStrings.Add(TargetType.None);
                                 }
                                 
                             }
@@ -478,17 +490,27 @@ public class GameManager : MonoBehaviour
                             {
                                 if (activeStringIndexes.Contains(i))
                                 {
-                                    activeStrings.Add(true);
+                                    //Get random number, if < 3, BOMB
+                                    int rng = UnityEngine.Random.Range(0, 10);
+                                    if (rng < 3 && UseBombs)
+                                    {
+                                        activeStrings.Add(TargetType.Bomb);
+                                    }
+                                    else
+                                    {
+                                        activeStrings.Add(TargetType.Normal);
+                                    }
                                 }
                                 else
                                 {
-                                    activeStrings.Add(false);
+                                    activeStrings.Add(TargetType.None);
                                 }
 
                             }
                             //setup orpheus data for this attack
                             Orpheus.AttackDamage = 20;
 
+                            
                             //attack
                             attack.SetupTargets(HeavyAttackStringPositions, activeStrings);
                             break;
@@ -507,6 +529,21 @@ public class GameManager : MonoBehaviour
                     {
                         float attackEffectiveness = Mathf.Lerp(0, 1, (attack.PercentHit - missThresh) / (fullHitThresh - missThresh));
                         Orpheus.Attack(attackEffectiveness, CurrentEnemy);
+                    }
+
+                    //Hit bombs?
+                    Debug.Log(attack.PercentHitBomb);
+                    if(attack.PercentHitBomb == 0)
+                    {
+                        //bombs dodged, do nothing
+                    }
+                    else
+                    {                      
+                        //Percent amount of 20 for dmg calcs
+                        float dmgTaken = 20 * attack.PercentHitBomb;
+
+                        //Take damage
+                        Orpheus.ChangeMorale(-dmgTaken);
                     }
 
                     //get rid of the attack display now
