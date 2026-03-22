@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
     [Header("Delay Time")]
     [SerializeField] private float _delayTimeBetweenChoices = 1f;
 
-    //TODO: proper setup for enabling bombs
-    public bool UseBombs { get; set; } = true;
+    //Use bombs?
+    private bool useBombs = false;
 
 
     //Persistent Data setup: an array of room datas to hold what is at what position
@@ -433,10 +433,17 @@ public class GameManager : MonoBehaviour
                     {
                         case RoomModifier.Fog:
                             attackPrefab = FogAttackPrefab;
+                            useBombs = false;
+                            break;
+
+                        case RoomModifier.Bomb:
+                            attackPrefab = AttackPrefab;
+                            useBombs = true;
                             break;
 
                         default:
                             attackPrefab = AttackPrefab;
+                            useBombs = false;
                             break;
                     }
                     AttackController attack = Instantiate(attackPrefab).GetComponent<AttackController>();
@@ -462,9 +469,10 @@ public class GameManager : MonoBehaviour
                             {
                                 if (activeStringIndexes.Contains(i))
                                 {
+                                    
                                     //Get random number, if < 3, BOMB
                                     int rng = UnityEngine.Random.Range(0, 10);
-                                    if (rng < 1 && UseBombs)
+                                    if (rng < 1 && )
                                     {
                                         activeStrings.Add(TargetType.Bomb);
                                     }
