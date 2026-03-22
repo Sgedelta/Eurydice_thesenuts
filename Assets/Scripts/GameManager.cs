@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     //Attack Data
     [SerializeField] private GameObject AttackPrefab;
+    [SerializeField] private GameObject FogAttackPrefab;
     private int LightAttackStringPositions = 7;
     private int LightAttackStringsActive = 3;
     private int HeavyAttackStringPositions = 12;
@@ -427,7 +428,18 @@ public class GameManager : MonoBehaviour
                     OrpheusDecision Odecision = Orpheus.CombatChoice;
 
                     //handle input
-                    AttackController attack = Instantiate(AttackPrefab).GetComponent<AttackController>();
+                    GameObject attackPrefab;
+                    switch(LastVisitedRoomManager.RoomData.Modifier)
+                    {
+                        case RoomModifier.Fog:
+                            attackPrefab = FogAttackPrefab;
+                            break;
+
+                        default:
+                            attackPrefab = AttackPrefab;
+                            break;
+                    }
+                    AttackController attack = Instantiate(attackPrefab).GetComponent<AttackController>();
                     List<int> activeStringIndexes = new List<int>();
                     List<TargetType> activeStrings = new List<TargetType>();
                     

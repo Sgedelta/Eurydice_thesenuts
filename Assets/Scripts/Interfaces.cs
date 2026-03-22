@@ -97,3 +97,11 @@ public enum RoomType
     Rest,
     Starting
 };
+
+
+public enum RoomModifier
+{
+    NONE,
+    Fog,
+    Bomb
+}
