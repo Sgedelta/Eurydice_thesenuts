@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private CanvasGroup _pauseMenuCanvasGroup;
     private bool isGamePaused = false;
+    public bool IsEnabled { get; set; } = true;
 
     private void Awake()
     {
@@ -39,35 +40,50 @@ public class PauseMenu : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext ctx)
     {
-        if (isGamePaused) ResumeGame();
-        else PauseGame();
+        if (IsEnabled)
+        {
+            if (isGamePaused) ResumeGame();
+            else PauseGame();
+        }
     }
 
     public void ResumeGame()
     {
-        this.gameObject.SetActive(false);
-        _pauseMenuCanvasGroup.blocksRaycasts = false;
-        Time.timeScale = 1f; // Resume normal game time
-        isGamePaused = false;
+        if (IsEnabled)
+        {
+            this.gameObject.SetActive(false);
+            _pauseMenuCanvasGroup.blocksRaycasts = false;
+            Time.timeScale = 1f; // Resume normal game time
+            isGamePaused = false;
+        }
     }
 
     public void PauseGame()
     {
-        this.gameObject.SetActive(true);
-        _pauseMenuCanvasGroup.blocksRaycasts = true;
-        Time.timeScale = 0f; // Stop all time-based operations (movement, physics, yap)
-        isGamePaused = true;
+        if (IsEnabled)
+        {
+            this.gameObject.SetActive(true);
+            _pauseMenuCanvasGroup.blocksRaycasts = true;
+            Time.timeScale = 0f; // Stop all time-based operations (movement, physics, yap)
+            isGamePaused = true;
+        }
     }
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f; // Unfreeze time before loading a new scene
-        SceneManager.LoadScene("MainMenu");
+        if(IsEnabled)
+        {
+            Time.timeScale = 1f; // Unfreeze time before loading a new scene
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
-        Application.Quit();
+        if (IsEnabled)
+        {
+            Debug.Log("Quit Game");
+            Application.Quit();
+        }
     }
 }
