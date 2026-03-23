@@ -306,15 +306,15 @@ public class AttackController : MonoBehaviour
         //bit of a chud version for playtesting...
         InDisplay.GetComponent<SpriteRenderer>().color = Color.green;
         yield return new WaitForSeconds(.2f);
-        InDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
+        InDisplay.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public IEnumerator DisplayAttackPartialHit(float effectiveness)
     {
         //bit of a chud version for playtesting...
-        InDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-        yield return new WaitForSeconds(.2f);
         InDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
+        yield return new WaitForSeconds(.2f);
+        InDisplay.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
 
