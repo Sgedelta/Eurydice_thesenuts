@@ -96,7 +96,10 @@ public class Door : MonoBehaviour, IPointerClickHandler
     {
         if (_doorType == RoomType.Ending)
         {
+            // Save data to json file
             GameManager.instance.SaveData();
+            // Clear the DataTracker dictionary 
+            GameManager.instance.DataTracker.Clear();
         }
     }
 }
