@@ -54,7 +54,7 @@ public class Door : MonoBehaviour, IPointerClickHandler
     {
         _coroutine = DoFade(_canvasGroup.alpha, 1); 
         StartCoroutine(_coroutine);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
     }
 
     // Fade Out Effect when entering a new room
