@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     //Attack Data
     [SerializeField] private GameObject AttackPrefab;
+    [SerializeField] private GameObject FogAttackPrefab;
     private int LightAttackStringPositions = 7;
     private int LightAttackStringsActive = 3;
     private int HeavyAttackStringPositions = 12;
@@ -57,6 +58,9 @@ public class GameManager : MonoBehaviour
     // Delay Time between player input choices
     [Header("Delay Time")]
     [SerializeField] private float _delayTimeBetweenChoices = 1f;
+
+    //Use bombs?
+    private bool useBombs = false;
 
 
     //Persistent Data setup: an array of room datas to hold what is at what position
@@ -116,8 +120,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log("started");
-
-        
     }
 
     // Update is called once per frame
@@ -428,11 +430,29 @@ public class GameManager : MonoBehaviour
                     OrpheusDecision Odecision = Orpheus.CombatChoice;
 
                     //handle input
-                    AttackController attack = Instantiate(AttackPrefab).GetComponent<AttackController>();
-                    List<int> activeStringIndexes = new List<int>();
-                    List<bool> activeStrings = new List<bool>();
-                    
+                    GameObject attackPrefab;
+                    switch(LastVisitedRoomManager.RoomData.Modifier)
+                    {
+                        case RoomModifier.Fog:
+                            attackPrefab = FogAttackPrefab;
+                            useBombs = false;
+                            break;
 
+                        case RoomModifier.Bomb:
+                            attackPrefab = AttackPrefab;
+                            useBombs = true;
+                            break;
+
+                        default:
+                            attackPrefab = AttackPrefab;
+                            useBombs = false;
+                            break;
+                    }
+                    AttackController attack = Instantiate(attackPrefab).GetComponent<AttackController>();
+                    List<int> activeStringIndexes = new List<int>();
+                    List<TargetType> activeStrings = new List<TargetType>();
+                    
+                    //TODO: putting a todo here so i can ctrl f here. makin bombs
                     switch(Odecision)
                     {
                         case OrpheusDecision.LightAttack:
@@ -451,11 +471,21 @@ public class GameManager : MonoBehaviour
                             {
                                 if (activeStringIndexes.Contains(i))
                                 {
-                                    activeStrings.Add(true);
+                                    
+                                    //Get random number, if < 3, BOMB
+                                    int rng = UnityEngine.Random.Range(0, 10);
+                                    if (rng < 1 && useBombs)
+                                    {
+                                        activeStrings.Add(TargetType.Bomb);
+                                    }
+                                    else
+                                    {
+                                        activeStrings.Add(TargetType.Normal);
+                                    }
                                 } 
                                 else
                                 {
-                                    activeStrings.Add(false);
+                                    activeStrings.Add(TargetType.None);
                                 }
                                 
                             }
@@ -482,17 +512,27 @@ public class GameManager : MonoBehaviour
                             {
                                 if (activeStringIndexes.Contains(i))
                                 {
-                                    activeStrings.Add(true);
+                                    //Get random number, if < 3, BOMB
+                                    int rng = UnityEngine.Random.Range(0, 10);
+                                    if (rng < 3 && useBombs)
+                                    {
+                                        activeStrings.Add(TargetType.Bomb);
+                                    }
+                                    else
+                                    {
+                                        activeStrings.Add(TargetType.Normal);
+                                    }
                                 }
                                 else
                                 {
-                                    activeStrings.Add(false);
+                                    activeStrings.Add(TargetType.None);
                                 }
 
                             }
                             //setup orpheus data for this attack
                             Orpheus.AttackDamage = 20;
 
+                            
                             //attack
                             attack.SetupTargets(HeavyAttackStringPositions, activeStrings);
                             break;
@@ -511,6 +551,21 @@ public class GameManager : MonoBehaviour
                     {
                         float attackEffectiveness = Mathf.Lerp(0, 1, (attack.PercentHit - missThresh) / (fullHitThresh - missThresh));
                         Orpheus.Attack(attackEffectiveness, CurrentEnemy);
+                    }
+
+                    //Hit bombs?
+                    Debug.Log(attack.PercentHitBomb);
+                    if(attack.PercentHitBomb == 0)
+                    {
+                        //bombs dodged, do nothing
+                    }
+                    else
+                    {                      
+                        //Percent amount of 20 for dmg calcs
+                        float dmgTaken = 20 * attack.PercentHitBomb;
+
+                        //Take damage
+                        Orpheus.ChangeMorale(-dmgTaken);
                     }
 
                     //get rid of the attack display now

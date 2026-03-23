@@ -2,7 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor.Experimental.GraphView;
 
+public enum TargetType
+{
+    None,
+    Normal,
+    Bomb
+}
 public class AttackController : MonoBehaviour
 {
     [SerializeField] private GameObject InStart;
@@ -17,8 +24,11 @@ public class AttackController : MonoBehaviour
     [SerializeField] private float basePerfectAllowance = .5f;
 
     private List<GameObject> stringDisplayInstances;
+    private List<GameObject> stringBombDisplayInstances;
     private List<Vector2> targetLocs;
     private List<float> targetHits;
+    private List<Vector2> bombLocs;
+    private List<float> bombHits;
     public float PercentHit
     {
         get {
@@ -36,6 +46,25 @@ public class AttackController : MonoBehaviour
         }
     }
 
+    //How often were bombs hit 
+    public float PercentHitBomb
+    {
+        get
+        {
+            float ret = 0;
+
+            for (int i = 0; i < bombHits.Count; i++)
+            {
+                if (bombHits[i] > 0)
+                {
+                    ret += bombHits[i] / bombHits.Count;
+                }
+            }
+
+            return ret;
+        }
+    }
+
     private float attackCurrentPercent = 0;
     private Vector2 attackCurrPos = Vector2.zero;
 
@@ -44,7 +73,10 @@ public class AttackController : MonoBehaviour
     {
         targetLocs = new List<Vector2>();
         targetHits = new List<float>();
+        bombLocs = new List<Vector2>();
+        bombHits = new List<float>();
         stringDisplayInstances = new List<GameObject>();
+        stringBombDisplayInstances = new List<GameObject>();
     }
 
     void Start()
@@ -68,9 +100,11 @@ public class AttackController : MonoBehaviour
             float hitError = baseMissAllowance * (GameManager.instance.Orpheus != null ? GameManager.instance.Orpheus.AttackMissAllowance : 1) / 2;
             float perfectError = basePerfectAllowance * (GameManager.instance.Orpheus != null ? GameManager.instance.Orpheus.AttackPerfectAllowance : 1) / 2;
 
+            
             //loop thru all targets, checking hits. Once one is found, input is done being processed.
             for(int i = 0; i < stringDisplayInstances.Count; i++)
             {
+                //
                 //if we've tried this string... don't!
                 if (targetHits[i] != -1)
                 {
@@ -81,22 +115,48 @@ public class AttackController : MonoBehaviour
                 float stringOnPath = Vector2.Dot(stringDisplayInstances[i].transform.position, StartToEnd) / StartToEnd.magnitude;
                 //Debug.Log($"attackOnPath: {attackOnPath} and string {i} is {stringOnPath}");
 
-                //calculate absolute diff
-                float hitDist = Math.Abs(attackOnPath - stringOnPath);
-                if(hitDist <= perfectError)
+                bool hit = CheckHit(targetHits, stringOnPath, attackOnPath, hitError, perfectError, i);
+                if (hit) { break; }
+
+            }
+
+            //Same thing as above but for bombs
+            for (int i = 0; i < stringBombDisplayInstances.Count; i++)
+            {
+                //if we've tried this string... don't!
+                if (bombHits[i] != -1)
                 {
-                    targetHits[i] = 1;
-                    StartCoroutine(DisplayAttackHit());
-                    break;
-                } 
-                else if(hitDist <= hitError) 
-                {
-                    targetHits[i] = (hitDist - perfectError) / (hitError - perfectError);
-                    StartCoroutine(DisplayAttackPartialHit(targetHits[i]));
-                    break;
+                    continue;
                 }
+
+                //get string project on path
+                float stringOnPath = Vector2.Dot(stringBombDisplayInstances[i].transform.position, StartToEnd) / StartToEnd.magnitude;
+
+                //TODO: do we want a modified hit/perfect range for bombs?
+                bool hit = CheckHit(bombHits, stringOnPath, attackOnPath, hitError, perfectError, i);
+                if (hit) { break; }
+
             }
         }
+    }
+
+    public bool CheckHit(List<float> hitList, float stringOnPath, float attackOnPath, float hitError, float perfectError, int index)
+    {
+        float hitDist = Math.Abs(attackOnPath - stringOnPath);
+        if (hitDist <= perfectError)
+        {
+            hitList[index] = 1;
+            StartCoroutine(DisplayAttackHit());
+            return true;
+        }
+        else if (hitDist <= hitError)
+        {
+            hitList[index] = (hitDist - perfectError) / (hitError - perfectError);
+            StartCoroutine(DisplayAttackPartialHit(hitList[index]));
+            return true;
+        }
+
+        return false;
     }
 
     public void SetupAttackData(float attackSpeed)
@@ -106,15 +166,15 @@ public class AttackController : MonoBehaviour
 
     public void SetupTargets(int stringNum)
     {
-        List<bool> activeStrings = new List<bool>();
+        List<TargetType> activeStrings = new List<TargetType>();
         for (int i = 0; i < stringNum; i++)
         {
-            activeStrings.Add(true); //TODO: Change to Enum Normal
+            activeStrings.Add(TargetType.Normal); //TODO: Change to Enum Normal
         }
         SetupTargets(stringNum, activeStrings);
     }
 
-    public void SetupTargets(int stringNum, List<bool> activeStrings) //< change list bool here to list ENUM -> None, Normal, Bomb
+    public void SetupTargets(int stringNum, List<TargetType> activeStrings) //< change list bool here to list ENUM -> None, Normal, Bomb
     {
         if(activeStrings == null || activeStrings.Count != stringNum)
         {
@@ -124,11 +184,13 @@ public class AttackController : MonoBehaviour
         //setup backend
         targetLocs.Clear();
         targetHits.Clear();
+        bombLocs.Clear();
+        bombHits.Clear();
 
         for(int i = 0; i < stringNum; i++)
         {
             //if the string is not active, skip it!
-            if (!activeStrings[i]) //TODO: Check if None Enum
+            if (activeStrings[i] == TargetType.None)
             {
                 continue;
             }
@@ -143,11 +205,32 @@ public class AttackController : MonoBehaviour
             }
 
             //calculate a new position, add it to targetLocs
-            //TODO: ADD A BOMB????
-            targetLocs.Add(Vector2.Lerp(InStart.transform.position, InEnd.transform.position, t));
-            targetHits.Add(-1f); //add a miss in logs, for now
+
+            //Normal targets
+            if (activeStrings[i] == TargetType.Normal)
+            {
+                targetLocs.Add(Vector2.Lerp(InStart.transform.position, InEnd.transform.position, t));
+                targetHits.Add(-1f); //add a miss in logs, for now
+            }
+
+            //Bomb targets
+            else
+            {
+                bombLocs.Add(Vector2.Lerp(InStart.transform.position, InEnd.transform.position, t));
+                bombHits.Add(-1f);
+            }
+            
         }
 
+        //Removing all the inactive strings from active strings
+        //Works with the frontend setup so the indexes can just be compared quick
+        for (int i = activeStrings.Count - 1; i >= 0; i--)
+        {
+            if (activeStrings[i] == TargetType.None)
+            {
+                activeStrings.RemoveAt(i);
+            }
+        }
 
         //setup frontend
         for(int i = 0;i < stringDisplayInstances.Count; i++)
@@ -155,20 +238,50 @@ public class AttackController : MonoBehaviour
             Destroy(stringDisplayInstances[i]);
         }
         stringDisplayInstances.Clear();
+        for(int i = 0; i < stringBombDisplayInstances.Count; i++)
+        {
+            Destroy(stringBombDisplayInstances[i]);
+        }
+        stringBombDisplayInstances.Clear();
 
-        for (int i = 0; i < targetLocs.Count; i++)
+        //I'm manually making an index counter here
+        //chud way but I'm tired I'll fix this later
+        //There is absolutely a simple solution but I'm not thinking of it
+        int bombIndex = 0;
+        int normalIndex = 0;
+
+        //Create strings for normal targets
+        for (int i = 0; i < activeStrings.Count; i++)
         {
             GameObject newString = Instantiate(StringDisplay, transform);
-            newString.transform.position = targetLocs[i];
-            //TODO: MAKE BOMB HERE
+            
+            
 
+            //Attaching a small script that just assigns a type to the gameobject
+            newString.AddComponent<AttackStringType>();
+            newString.GetComponent<AttackStringType>().StringType = activeStrings[i];
+
+            //If the string type is bomb, change the color
+            if (activeStrings[i] == TargetType.Bomb)
+            {
+                newString.transform.position = bombLocs[bombIndex];
+                bombIndex++;
+                newString.GetComponent<SpriteRenderer>().color = Color.black;
+                stringBombDisplayInstances.Add(newString);
+            }
+            else
+            {
+                newString.transform.position = targetLocs[normalIndex];
+                normalIndex++;
+                stringDisplayInstances.Add(newString);    
+            }
+            
             //if we wanted we could do a fun little math thing here and rotate them, but we'd need another point to make it look accurate and not parallel
             //which would also make the last part harder and... ugh.
             //so not for now!
             
 
             newString.SetActive(true);
-            stringDisplayInstances.Add(newString);
         }
 
     }
@@ -218,7 +331,8 @@ public class AttackController : MonoBehaviour
         }
 
         Gizmos.color = Color.yellow;
-
+        
+        
         for (int i = 0; i < stringDisplayInstances.Count; i++) 
         {
             Gizmos.matrix = stringDisplayInstances[i].transform.localToWorldMatrix;
