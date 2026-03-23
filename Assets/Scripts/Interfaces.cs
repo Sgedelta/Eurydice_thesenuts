@@ -95,7 +95,8 @@ public enum RoomType
     Monster,
     Item,
     Rest,
-    Starting
+    Starting,
+    Ending
 };
 
 

@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e47479643bfe3a4d8290640fb9f7836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorType: 4
+  _doorType: 5
   _doorScene: M2_Entrance
   _canvas: {fileID: 1522908994}
 --- !u!212 &723345282
