@@ -472,7 +472,7 @@ public class GameManager : MonoBehaviour
                                     
                                     //Get random number, if < 3, BOMB
                                     int rng = UnityEngine.Random.Range(0, 10);
-                                    if (rng < 1 && )
+                                    if (rng < 1 && useBombs)
                                     {
                                         activeStrings.Add(TargetType.Bomb);
                                     }
@@ -512,7 +512,7 @@ public class GameManager : MonoBehaviour
                                 {
                                     //Get random number, if < 3, BOMB
                                     int rng = UnityEngine.Random.Range(0, 10);
-                                    if (rng < 3 && UseBombs)
+                                    if (rng < 3 && useBombs)
                                     {
                                         activeStrings.Add(TargetType.Bomb);
                                     }
