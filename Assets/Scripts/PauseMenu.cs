@@ -6,7 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu instance;
 
-    private CanvasGroup _pauseMenuCanvasGroup;
+    [SerializeField] private CanvasGroup _pauseMenuCanvasGroup;
     private bool isGamePaused = false;
 
     private void Awake()
@@ -27,7 +27,6 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        _pauseMenuCanvasGroup = this.gameObject.GetComponent<CanvasGroup>();
         _pauseMenuCanvasGroup.blocksRaycasts = false;
         this.gameObject.SetActive(false);
     }
