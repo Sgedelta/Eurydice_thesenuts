@@ -35,5 +35,29 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map1/M1_R1.unity
     guid: 35c6eb69ae2662344b5cccc039a74939
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_Entrance.unity
+    guid: 5c4cbb3ae7517b34ca45df8b8f3dac05
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_R00.unity
+    guid: 8376318ce7f85fd43a3fc947aa80660e
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_I11.unity
+    guid: e74f6a6d6c069f6408e4e4fbdc87089f
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_C22.unity
+    guid: 09dd6c7fc9acb6c47bccd484892c2479
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_C13.unity
+    guid: a8a7403055c96864fa92a17ffa4b303d
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_C12.unity
+    guid: 5615991fa9b9ef142933d094000892ee
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_C02.unity
+    guid: f80eb86912b2d3d43b189f4e8215041b
+  - enabled: 1
+    path: Assets/Scenes/Map2/M2_C01.unity
+    guid: f3e6e60eed434bc4c9f7fe7c3c462c85
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

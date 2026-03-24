@@ -22,8 +22,10 @@ public class PauseMenu : MonoBehaviour
         // Otherwise, set this as the instance
         instance = this;
 
+
         // Keep the object alive when loading new scenes
         DontDestroyOnLoad(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     void Start()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Note: we could do this with an interface and stuf but... ehhh.....prototype. I don't think we really need it
 public enum EurydiceDecision
@@ -61,7 +62,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
 
         Debug.Log("Eurydice Inventory:" + EquippedItems[0] + EquippedItems[1]);
 
-        EurydiceCombatPanel = GameObject.FindWithTag("EurydiceCombatPanel");
+        //EurydiceCombatPanel = GameObject.FindWithTag("EurydiceCombatPanel");
     }
 
     // Update is called once per frame
@@ -126,6 +127,31 @@ public class EurydiceController : MonoBehaviour, ICanEquip
         // - Hide UI
 
         EurydiceCombatPanel.SetActive(true); // Show Combat UI
+
+        Button laurelButton = EurydiceCombatPanel.transform.GetChild(1).gameObject.GetComponent<Button>();
+        Button torchButton  = EurydiceCombatPanel.transform.GetChild(2).gameObject.GetComponent<Button>();
+
+        laurelButton.interactable = false;
+        torchButton.interactable = false;
+
+        for (int i = 0; i < EquippedItems.Length; i++)
+        {
+            if(EquippedItems[i] == null)
+            {
+                continue;
+            }
+
+            //this *could* be a switch statement. emphasis on could. teehee! -Sam
+            if(EquippedItems[i].name == "Laurel")
+            {
+                laurelButton.interactable = true;
+            }
+            if (EquippedItems[i].name == "Torch")
+            {
+                torchButton.interactable = true;
+            }
+        }
+
 
         while (!combatDecisionMade)
         {

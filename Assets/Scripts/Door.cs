@@ -86,7 +86,7 @@ public class Door : MonoBehaviour, IPointerClickHandler
 
     private void CheckMonsterRoom()
     {
-        if (_doorType == RoomType.Monster)
+        if (_doorType == RoomType.Monster && !GameManager.instance.DataTracker.ContainsKey(_doorScene))
         {
             GameManager.instance.DataTracker.Add(_doorScene, 0);
         }

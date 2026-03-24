@@ -9,6 +9,8 @@ public class RoomManager : MonoBehaviour
 
     public RoomData RoomData { get { return roomData; } }
 
+    [SerializeField] Vector3Int newMapDims = new Vector3Int(0, 3, 3);
+
 
     [SerializeField] GameObject[] doorObjects;
     [SerializeField] GameObject[] objectsToKill;
@@ -28,6 +30,12 @@ public class RoomManager : MonoBehaviour
         {
             Debug.LogError("[RM] Room Manager's Room Data Array was null!");
             return;
+        }
+
+        if(GameManager.instance.MapIndex != newMapDims.x && roomData.Type == RoomType.Starting)
+        {
+            GameManager.instance.MapIndex = newMapDims.x;
+            GameManager.instance.SetupMapDimensions(newMapDims.y, newMapDims.z);
         }
 
         //if the data in the GM exists or isn't matching, overwrite our data with that data
@@ -107,5 +115,10 @@ public class RoomData
     public bool Completed = false;
 
     public Vector2Int Position;
+
+    public override string ToString()
+    {
+        return $"Roomt at {Position.x}, {Position.y} is of type {Type} {Modifier} and completed is {Completed}";
+    }
 
 }

@@ -84,7 +84,7 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
 
         Debug.Log("Orpheus Inventory:" + EquippedItems[0] + EquippedItems[1]);
 
-        OrpheusCombatPanel = GameObject.FindWithTag("OrpheusCombatPanel");
+        //OrpheusCombatPanel = GameObject.FindWithTag("OrpheusCombatPanel");
         
     }
 

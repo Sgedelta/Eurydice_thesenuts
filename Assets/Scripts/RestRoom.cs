@@ -17,6 +17,7 @@ public class RestRoom : MonoBehaviour
     public void OnRestore()
     {
         GameManager.instance.Orpheus.SetMorale(100.0f);
+        GameManager.instance.LastVisitedRoomManager.SetCompleted(true);
         DeactivateRestRoomUI();
     }
 

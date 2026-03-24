@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     //Persistent Data setup: an array of room datas to hold what is at what position
     private RoomData[] roomDatas;
     public int MapWidth;
+    public int MapIndex = 0;
 
     private Vector2Int lastVisitedRoom = new Vector2Int(-1, -1);
     private int lastVisitedRoomIndex = -1;
@@ -138,27 +139,49 @@ public class GameManager : MonoBehaviour
             roomDatas = null; //I'm 99% sure I don't have to dispose of the array and GC will clean this...
         }
 
+        MapWidth = xSize;
+
         roomDatas = new RoomData[xSize * ySize];
     }
 
     public RoomData GetRoomDataAtLoc(int x, int y)
     {
-        if((y * x) + x >= roomDatas.Length)
+        PrintAllRoomDatas();
+        if((y * MapWidth) + x >= roomDatas.Length)
         {
             throw new ArgumentOutOfRangeException($"Position {x}, {y} is out of range of Room Datas. must be within room datas of bounds {MapWidth}, {roomDatas.Length / MapWidth}");
         }
 
-        return roomDatas[x * y + x];
+        return roomDatas[(MapWidth * y) + x];
     }
 
     public void SetRoomDataAtLoc(int x, int y, RoomData data)
     {
-        if ((y * x) + x >= roomDatas.Length)
+        
+        if ((y * MapWidth) + x >= roomDatas.Length)
         {
             throw new ArgumentOutOfRangeException($"Position {x}, {y} is out of range of Room Datas. must be within room datas of bounds {MapWidth}, {roomDatas.Length / MapWidth}");
         }
 
-        roomDatas[x * y + x] = data;
+        roomDatas[(MapWidth * y) + x] = data;
+    }
+
+    public void PrintAllRoomDatas()
+    {
+        string data = $"ALL ROOM DATA: size {roomDatas.Length}\n";
+        for (int i = 0; i < roomDatas.Length; i++)
+        {
+            if(roomDatas[i] != null)
+            {
+                data += roomDatas[i].ToString() + "\n";
+            }
+            else
+            {
+                data += $"room {i} is null! \n";
+            }
+            
+        }
+        Debug.Log(data);
     }
 
     //Toggles inventory UI
@@ -367,16 +390,26 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Enemy is: {CurrentEnemy.name} | {CurrentEnemy.MoralePercent}");
         
 
-        int waitFramesForHealthbar = 100;
-        while (ActiveHealthBar == null && waitFramesForHealthbar > 0)
+        int waitFrames = 100;
+        while (ActiveHealthBar == null && waitFrames > 0)
         {
-            waitFramesForHealthbar--;
-            if(waitFramesForHealthbar == 0)
+            waitFrames--;
+            if(waitFrames == 0)
             {
                 Debug.LogError("Healthbar was not initialized within 100 frames! Cancelling!");
             }
             yield return null;
         }
+
+        waitFrames = 100;
+
+        while ((Orpheus.OrpheusCombatPanel == null || Eurydice.EurydiceCombatPanel == null) && waitFrames > 0)
+        {
+            //same as above but for combat panels to ensure they get loaded....
+            waitFrames--;
+            yield return null;
+        }
+        
 
         ActiveHealthBar.HaveEnemyHealth = true;
         ActiveHealthBar.SetHealthData(Orpheus.MoralePercent, Orpheus.MoraleDisplayPercent, CurrentEnemy.MoralePercent);
@@ -588,6 +621,10 @@ public class GameManager : MonoBehaviour
                     //ouch.
                     Orpheus.ChangeMorale(-CurrentEnemy.MoraleDamagePerTurn);
                     // At the end of each turn (enemy attacks), increment TurnsPerCombat for data-tracking
+                    if(!DataTracker.ContainsKey(SceneManager.GetActiveScene().name))
+                    {
+                        DataTracker.Add(SceneManager.GetActiveScene().name, 0);
+                    }
                     DataTracker[SceneManager.GetActiveScene().name]++;
                     yield return null; //chug along
                     break;
@@ -614,6 +651,7 @@ public class GameManager : MonoBehaviour
             //playtest temp code:
             Destroy(CurrentEnemy.gameObject);
             LastVisitedRoomManager.SetCompleted(true);
+            ActiveHealthBar.gameObject.SetActive(false); //hide healthbar - there's an issue with doors going on.
         } else
         {
             //Orpheus died:

@@ -61,9 +61,10 @@ MonoBehaviour:
   - {fileID: 0}
   _delayTimeBetweenChoices: 1
   MapWidth: 0
+  MapIndex: 0
   LastVisitedRoomManager: {fileID: 0}
-  Orpheus: {fileID: 8042495143850129227, guid: eb03f5659eaad7344b3994e59c45bfa3, type: 3}
-  Eurydice: {fileID: 6150811001381448439, guid: 4dc2703792c803c438be7c5855e355a1, type: 3}
+  Orpheus: {fileID: 0}
+  Eurydice: {fileID: 0}
   CurrentEnemy: {fileID: 0}
 --- !u!114 &7973180443653968896
 MonoBehaviour:
