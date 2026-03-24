@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -67,8 +68,11 @@ public class Door : MonoBehaviour, IPointerClickHandler
     // Loads the _doorScene level
     private void LoadLevel()
     {
-        // Prints the room and door type
-        Debug.Log(_doorScene.ToString() + ": " + _doorType.ToString());
+        // If entering a combat room, create a new entry in data tracker dictionary
+        CheckMonsterRoom();
+
+        // If entering the end room, save data to json file
+        CheckEndRoom();
 
         SceneManager.LoadScene(_doorScene);
     }
@@ -78,5 +82,24 @@ public class Door : MonoBehaviour, IPointerClickHandler
     {
         FadeIn();
         LoadLevel();
+    }
+
+    private void CheckMonsterRoom()
+    {
+        if (_doorType == RoomType.Monster)
+        {
+            GameManager.instance.DataTracker.Add(_doorScene, 0);
+        }
+    }
+
+    private void CheckEndRoom()
+    {
+        if (_doorType == RoomType.Ending)
+        {
+            // Save data to json file
+            GameManager.instance.SaveData();
+            // Clear the DataTracker dictionary 
+            GameManager.instance.DataTracker.Clear();
+        }
     }
 }

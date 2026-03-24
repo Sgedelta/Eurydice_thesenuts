@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -76,6 +78,11 @@ public class GameManager : MonoBehaviour
     }
 
     public RoomManager LastVisitedRoomManager;
+
+    // Data-Tracking
+    // Key: Scene Name
+    // Value: Turns Per Combat
+    public Dictionary<string, int> DataTracker { get; set; } = new Dictionary<string, int>(); 
 
     private void Awake()
     {
@@ -580,6 +587,8 @@ public class GameManager : MonoBehaviour
                 case 2: //Enemy
                     //ouch.
                     Orpheus.ChangeMorale(-CurrentEnemy.MoraleDamagePerTurn);
+                    // At the end of each turn (enemy attacks), increment TurnsPerCombat for data-tracking
+                    DataTracker[SceneManager.GetActiveScene().name]++;
                     yield return null; //chug along
                     break;
 
@@ -625,6 +634,23 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RunCombat());
     }
 
+    // Data-Tracking Helper Method
+    public void SaveData()
+    {
+        SaveData data = new SaveData();
+        
+        // populate the savedata lists with the data stored inside DataTracker dictionary
+        foreach(KeyValuePair<string, int> p in DataTracker)
+        {
+            data.combatRooms.Add(p.Key);
+            data.combatTurns.Add(p.Value);
+        }
 
+        string json = JsonUtility.ToJson(data, true);
 
+        string path = Path.Combine(Application.persistentDataPath, "savefile.json");
+
+        File.WriteAllText(path, json);
+        Debug.Log("Saved to: " + path);
+    }
 }
