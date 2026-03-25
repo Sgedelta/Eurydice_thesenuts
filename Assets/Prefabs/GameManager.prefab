@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8604375896132431378}
   - component: {fileID: 3561623794649868399}
   - component: {fileID: 7973180443653968896}
+  - component: {fileID: 5962613732546975813}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _delayTimeBetweenChoices: 1
-  MapWidth: 0
+  MapWidth: 4
   MapIndex: 0
   LastVisitedRoomManager: {fileID: 0}
   Orpheus: {fileID: 0}
@@ -97,7 +98,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682909608102072012, guid: 0757affafc9b9cb4cb03ca118541e433, type: 3}
+      - m_Target: {fileID: 5962613732546975813}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
@@ -188,3 +189,16 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5962613732546975813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6348212790741960469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f016954a4c8bf9541a0a61581780be71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseMenuCanvasGroup: {fileID: 0}

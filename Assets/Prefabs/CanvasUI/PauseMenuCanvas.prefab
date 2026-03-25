@@ -285,14 +285,13 @@ GameObject:
   - component: {fileID: 8649111640559206546}
   - component: {fileID: 8968672671740434285}
   - component: {fileID: 6856727607512148694}
-  - component: {fileID: 7682909608102072012}
   m_Layer: 5
   m_Name: PauseMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2025398503183883569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -388,19 +387,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &7682909608102072012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2305385406150025999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f016954a4c8bf9541a0a61581780be71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pauseMenuCanvasGroup: {fileID: 6856727607512148694}
 --- !u!1 &2819081843922280097
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682909608102072012}
+      - m_Target: {fileID: 5962613732546975813, guid: 612aec158e830d9498b4fa7319733287, type: 3}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -734,7 +720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682909608102072012}
+      - m_Target: {fileID: 5962613732546975813, guid: 612aec158e830d9498b4fa7319733287, type: 3}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -867,7 +853,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682909608102072012}
+      - m_Target: {fileID: 5962613732546975813, guid: 612aec158e830d9498b4fa7319733287, type: 3}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: LoadMenu
         m_Mode: 1
