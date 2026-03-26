@@ -108,9 +108,6 @@ public class GameManager : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-
-        
-
     }
 
 
@@ -686,7 +683,7 @@ public class GameManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(data, true);
 
-        string path = Path.Combine(Application.persistentDataPath, "savefile.json");
+        string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')+1) + "savefile.json";
 
         File.WriteAllText(path, json);
         Debug.Log("Saved to: " + path);

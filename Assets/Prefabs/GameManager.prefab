@@ -60,7 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _delayTimeBetweenChoices: 1
-  MapWidth: 0
+  MapWidth: 4
   MapIndex: 0
   LastVisitedRoomManager: {fileID: 0}
   Orpheus: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7682909608102072012, guid: 0757affafc9b9cb4cb03ca118541e433, type: 3}
+      - m_Target: {fileID: 3751225193290191257, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0

@@ -4,34 +4,17 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static PauseMenu instance;
-
-    [SerializeField] private CanvasGroup _pauseMenuCanvasGroup;
+    [SerializeField] private GameObject _pauseMenuPanel;
     private bool isGamePaused = false;
-    public bool IsEnabled { get; set; } = true;
-
-    private void Awake()
-    {
-        // If an instance already exists and it's not this, destroy this one
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        // Otherwise, set this as the instance
-        instance = this;
-
-
-        // Keep the object alive when loading new scenes
-        DontDestroyOnLoad(this.gameObject);
-        gameObject.SetActive(false);
-    }
+    //public bool IsEnabled { get; set; } = true;
 
     void Start()
     {
-        _pauseMenuCanvasGroup.blocksRaycasts = false;
-        this.gameObject.SetActive(false);
+        if(this.gameObject.transform.Find("PauseMenuPanel"))
+        {
+            _pauseMenuPanel = this.gameObject.transform.Find("PauseMenuPanel").gameObject;
+            _pauseMenuPanel.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -42,50 +25,47 @@ public class PauseMenu : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext ctx)
     {
-        if (IsEnabled)
-        {
+        //if (IsEnabled)
+        //{
             if (isGamePaused) ResumeGame();
             else PauseGame();
-        }
+        //}
     }
 
     public void ResumeGame()
     {
-        if (IsEnabled)
-        {
-            this.gameObject.SetActive(false);
-            _pauseMenuCanvasGroup.blocksRaycasts = false;
+        //if (IsEnabled)
+        //{
+            _pauseMenuPanel.gameObject.SetActive(false);
             Time.timeScale = 1f; // Resume normal game time
             isGamePaused = false;
-        }
+        //}
     }
 
     public void PauseGame()
     {
-        if (IsEnabled)
-        {
-            this.gameObject.SetActive(true);
-            _pauseMenuCanvasGroup.blocksRaycasts = true;
+        //if (IsEnabled)
+        //{
+            _pauseMenuPanel.gameObject.SetActive(true);
             Time.timeScale = 0f; // Stop all time-based operations (movement, physics, yap)
             isGamePaused = true;
-        }
+        //}
     }
 
     public void LoadMenu()
     {
-        if(IsEnabled)
-        {
+        //if(IsEnabled)
+        //{
             Time.timeScale = 1f; // Unfreeze time before loading a new scene
             SceneManager.LoadScene("MainMenu");
-        }
+        //}
     }
 
     public void QuitGame()
     {
-        if (IsEnabled)
-        {
-            Debug.Log("Quit Game");
+        //if (IsEnabled)
+        //{
             Application.Quit();
-        }
+        //}
     }
 }
