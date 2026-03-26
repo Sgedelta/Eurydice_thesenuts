@@ -522,8 +522,6 @@ public class GameManager : MonoBehaviour
                                 }
                                 
                             }
-                            //setup orpheus data for this attack
-                            Orpheus.AttackDamage = 10;
 
                             //attack.
                             attack.SetupTargets(LightAttackStringPositions, activeStrings);
@@ -562,8 +560,6 @@ public class GameManager : MonoBehaviour
                                 }
 
                             }
-                            //setup orpheus data for this attack
-                            Orpheus.AttackDamage = 20;
 
                             
                             //attack
@@ -582,8 +578,13 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        float attackEffectiveness = Mathf.Lerp(0, 1, (attack.PercentHit - missThresh) / (fullHitThresh - missThresh));
-                        Orpheus.Attack(attackEffectiveness, CurrentEnemy);
+                        float lightAttackForgiveness = Odecision == OrpheusDecision.LightAttack ? .3f : 0f;
+                        float attackEffectiveness = Mathf.Lerp(0, 1, (attack.PercentHit - missThresh + lightAttackForgiveness) / (fullHitThresh - missThresh));
+                        Orpheus.Attack(attackEffectiveness, CurrentEnemy, Odecision);
+                        if(Odecision == OrpheusDecision.LightAttack)
+                        {
+                            CurrentEnemy.DoTTriggers.Add(new DoTTrigger(attackEffectiveness * Orpheus.AttackDamage * .5f, 3));
+                        }
                     }
 
                     //Hit bombs?
@@ -615,6 +616,8 @@ public class GameManager : MonoBehaviour
                     break;
 
                 case 2: //Enemy
+                    //do DoT 
+                    CurrentEnemy.TriggerAllDoTTriggers();
                     //ouch.
                     Orpheus.ChangeMorale(-CurrentEnemy.MoraleDamagePerTurn);
                     // At the end of each turn (enemy attacks), increment TurnsPerCombat for data-tracking

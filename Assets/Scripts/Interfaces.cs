@@ -53,7 +53,7 @@ public interface ICanAttack
     /// An attack method, which takes an effectiveness (how accurately you hit the notes) and something with Morale
     /// </summary>
     /// <param name="effectiveness"></param>
-    public void Attack(float effectiveness, IHasMorale target);
+    public void Attack(float effectiveness, IHasMorale target, OrpheusDecision dec);
 
     /// <summary>
     /// A event that is called on attack. Takes the effectiveness passed into attack. 
