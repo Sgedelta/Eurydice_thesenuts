@@ -23,31 +23,8 @@ public class Door : MonoBehaviour, IPointerClickHandler
     // On click event
     public void OnPointerClick(PointerEventData eventData)
     {
-        // If entering a combat room, create a new entry in data tracker dictionary
-        CheckMonsterRoom();
-
-        // If entering the end room, save data to json file
-        CheckEndRoom();
-
         UIManager.instance.GetComponent<TransitionCanvas>().FadeInOut(_doorScene);
     }
 
-    private void CheckMonsterRoom()
-    {
-        if (_doorType == RoomType.Monster && !GameManager.instance.DataTracker.ContainsKey(_doorScene))
-        {
-            GameManager.instance.DataTracker.Add(_doorScene, 0);
-        }
-    }
-
-    private void CheckEndRoom()
-    {
-        if (_doorType == RoomType.Ending)
-        {
-            // Save data to json file
-            GameManager.instance.SaveData();
-            // Clear the DataTracker dictionary 
-            GameManager.instance.DataTracker.Clear();
-        }
-    }
+ 
 }
