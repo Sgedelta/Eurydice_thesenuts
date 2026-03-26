@@ -80,10 +80,9 @@ public class GameManager : MonoBehaviour
 
     public RoomManager LastVisitedRoomManager;
 
-    // Data-Tracking
-    // Key: Scene Name
-    // Value: Turns Per Combat
-    public Dictionary<string, int> DataTracker { get; set; } = new Dictionary<string, int>(); 
+    //new data tracking
+    public Dictionary<RoomModifier, Tuple<int, float>> DataTracker { get; set; } = new Dictionary<RoomModifier, Tuple<int, float>>(); 
+
 
     private void Awake()
     {
@@ -94,6 +93,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SetupMapDimensions(3, 3); //TEMP
             SetupInvButtons();
+            TryLoadSavedData();
         }
         //awake should never be called twice but. just in case!
         else if (instance != this)
@@ -382,6 +382,7 @@ public class GameManager : MonoBehaviour
     {
         //combat setup
         int turn = 0; //whose turn is it? 0 - Eurydice, 1 - Orpheus, 2 - Enemy
+        int totalRounds = 0;
 
         Debug.Log($"Orpheus is: {Orpheus.name}");
         Debug.Log($"Enemy is: {CurrentEnemy.name} | {CurrentEnemy.MoralePercent}");
@@ -419,6 +420,7 @@ public class GameManager : MonoBehaviour
             switch(turn)
             {
                 case 0: //E
+                    totalRounds += 1;
                     //get input
                     yield return StartCoroutine(Eurydice.GetCombatChoice());
                     EurydiceDecision Edecision = Eurydice.CombatChoice;
@@ -618,11 +620,7 @@ public class GameManager : MonoBehaviour
                     //ouch.
                     Orpheus.ChangeMorale(-CurrentEnemy.MoraleDamagePerTurn);
                     // At the end of each turn (enemy attacks), increment TurnsPerCombat for data-tracking
-                    if(!DataTracker.ContainsKey(SceneManager.GetActiveScene().name))
-                    {
-                        DataTracker.Add(SceneManager.GetActiveScene().name, 0);
-                    }
-                    DataTracker[SceneManager.GetActiveScene().name]++;
+                    
                     yield return null; //chug along
                     break;
 
@@ -633,8 +631,22 @@ public class GameManager : MonoBehaviour
             turn = (turn + 1) % 3;
         }
 
+        //handle saving data
+        if(DataTracker.TryGetValue(LastVisitedRoomManager.RoomData.Modifier, out Tuple<int, float> data))
+        {
+            //make a new data and get the "unaveraged" (/scaled up) turn count, plus our new count, re-averaged. slight data loss here due to floating point, womp womp
+            DataTracker[LastVisitedRoomManager.RoomData.Modifier] = new Tuple<int, float>(data.Item1 + 1, ((data.Item2 * data.Item1) + totalRounds) / ((float)data.Item1+1)); 
+        }
+        else
+        {
+            DataTracker.Add(LastVisitedRoomManager.RoomData.Modifier, new Tuple<int, float>(1, totalRounds));
+        }
+
+        SaveData();
+
+
         //handle combat output
-        if(Orpheus.IsAlive)
+        if (Orpheus.IsAlive)
         {
             //enemy died
 
@@ -649,7 +661,8 @@ public class GameManager : MonoBehaviour
             Destroy(CurrentEnemy.gameObject);
             LastVisitedRoomManager.SetCompleted(true);
             ActiveHealthBar.gameObject.SetActive(false); //hide healthbar - there's an issue with doors going on.
-        } else
+        }
+        else
         {
             //Orpheus died:
             //game over!
@@ -669,19 +682,45 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RunCombat());
     }
 
-    // Data-Tracking Helper Method
+    public bool TryLoadSavedData()
+    {
+        string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/') + 1) + "savefile.json";
+        
+        if (File.Exists(path))
+        {
+            string data = File.ReadAllText(path);
+            SaveData parsedDat = (SaveData)JsonUtility.FromJson(data, typeof(SaveData));
+            
+            for(int i = 0; i < 3; i++)
+            {
+                //evil and disgusting and... functional. 
+                RoomModifier modType = RoomModifier.NONE;
+                switch(i)
+                {
+                    case 1:
+                        modType = RoomModifier.Fog; break;
+                    case 2:
+                        modType= RoomModifier.Bomb; break;
+                }
+                DataTracker.Add(modType, new Tuple<int, float>(parsedDat.NumHits[i], parsedDat.NumAvgRounds[i]));
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // Data-Tracking Helper Method - overwrites file with new data
     public void SaveData()
     {
-        SaveData data = new SaveData();
-        
-        // populate the savedata lists with the data stored inside DataTracker dictionary
-        foreach(KeyValuePair<string, int> p in DataTracker)
-        {
-            data.combatRooms.Add(p.Key);
-            data.combatTurns.Add(p.Value);
-        }
+        SaveData data = new SaveData(DataTracker);
 
         string json = JsonUtility.ToJson(data, true);
+
+        Debug.Log(json);
 
         string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')+1) + "savefile.json";
 
