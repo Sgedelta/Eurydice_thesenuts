@@ -1143,7 +1143,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorType: 1
   _doorScene: M2_C12
-  _canvas: {fileID: 0}
 --- !u!212 &1427619296
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1208,7 +1207,7 @@ Transform:
   m_GameObject: {fileID: 1427619293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.01, y: 0, z: 0}
+  m_LocalPosition: {x: -8.36, y: -0.04, z: 0}
   m_LocalScale: {x: 1.8487, y: 2.3479, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1229,7 +1228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4031186521939446402, guid: b1ed57a8549d8d74fb110fb17cc55d48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.89
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 4031186521939446402, guid: b1ed57a8549d8d74fb110fb17cc55d48, type: 3}
       propertyPath: m_LocalPosition.z
