@@ -374,6 +374,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
+--- !u!1 &274418697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9074261977711221082, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
+  m_PrefabInstance: {fileID: 274418696}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &599810239
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorType: 2
   _doorScene: M1_I1
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 274418697}
 --- !u!212 &723345282
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1342,7 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorType: 4
   _doorScene: M1_Entrance
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 274418697}
 --- !u!212 &2077344090
 SpriteRenderer:
   m_ObjectHideFlags: 0

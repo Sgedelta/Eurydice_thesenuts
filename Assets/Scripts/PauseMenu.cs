@@ -10,8 +10,11 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        _pauseMenuPanel = this.gameObject.transform.Find("PauseMenuPanel").gameObject;
-        _pauseMenuPanel.gameObject.SetActive(false);
+        if(this.gameObject.transform.Find("PauseMenuPanel"))
+        {
+            _pauseMenuPanel = this.gameObject.transform.Find("PauseMenuPanel").gameObject;
+            _pauseMenuPanel.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
