@@ -688,7 +688,8 @@ public class GameManager : MonoBehaviour
         
         if (File.Exists(path))
         {
-            string data = File.ReadAllText(path);
+            string data = File.ReadAllText(path); 
+            data = data.Substring(0, data.IndexOf('=')); //trim off process data
             SaveData parsedDat = (SaveData)JsonUtility.FromJson(data, typeof(SaveData));
             
             for(int i = 0; i < 3; i++)
@@ -702,7 +703,7 @@ public class GameManager : MonoBehaviour
                     case 2:
                         modType= RoomModifier.Bomb; break;
                 }
-                DataTracker.Add(modType, new Tuple<int, float>(parsedDat.NumHits[i], parsedDat.NumAvgRounds[i]));
+                DataTracker.Add(modType, new Tuple<int, float>(parsedDat.NumCombats[i], parsedDat.NumAvgRounds[i]));
             }
 
             return true;
@@ -719,12 +720,29 @@ public class GameManager : MonoBehaviour
         SaveData data = new SaveData(DataTracker);
 
         string json = JsonUtility.ToJson(data, true);
-
-        Debug.Log(json);
-
+        
         string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')+1) + "savefile.json";
 
-        File.WriteAllText(path, json);
+        string outcome = "===ANALYSIS===\n";
+        outcome += $"Normal Combat Average Turn Completion: {DataTracker[RoomModifier.NONE]}\nFog Combat Average Turn Completion: {DataTracker[RoomModifier.Fog]}\nBomb Combat Average Turn Completion: {DataTracker[RoomModifier.Bomb]}\n";
+        if (DataTracker[RoomModifier.NONE].Item2 > DataTracker[RoomModifier.Fog].Item2 && DataTracker[RoomModifier.NONE].Item2 > DataTracker[RoomModifier.Bomb].Item2)
+        {
+            outcome += "Normal Combats have a higher average than both Fog and Bomb rooms, meaning that difficulty should be adjusted!";
+        }
+        else {
+            if (DataTracker[RoomModifier.Bomb].Item2 >= DataTracker[RoomModifier.NONE].Item2)
+            {
+                outcome += $"Bomb combats are harder than normal combats by {DataTracker[RoomModifier.Bomb].Item2 - DataTracker[RoomModifier.NONE].Item2} turns on average\n";
+            }
+            if (DataTracker[RoomModifier.Fog].Item2 >= DataTracker[RoomModifier.NONE].Item2)
+            {
+                outcome += $"Fog combats are harder than normal combats by {DataTracker[RoomModifier.Fog].Item2 - DataTracker[RoomModifier.NONE].Item2} turns on average\n";
+            }
+
+
+        }
+
+        File.WriteAllText(path, json + "\n" + outcome);
         Debug.Log("Saved to: " + path);
     }
 }
