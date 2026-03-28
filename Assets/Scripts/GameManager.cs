@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     //References to UIs to enable/disable
     //TODO: all placeholder UIs currently, this may be removed/adjusted
     [SerializeField] private GameObject EquipUI;
-    [SerializeField] private GameObject GeneralUI;
+    [SerializeField] private GameObject InventoryUI;
 
     //Description management for inventory ui
     private Transform descObject;
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning($"Destroying {name} due to the static instance of GameManager already being on {GameManager.instance.name}");
             //pass on our data on (the old gm will need it as it's loading into this scene)
-            GameManager.instance.GeneralUI = GeneralUI;
+            GameManager.instance.InventoryUI = InventoryUI;
             GameManager.instance.EquipUI = EquipUI;
             GameManager.instance.inventorySlots = inventorySlots;
 
@@ -124,6 +124,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log("started");
+        InventoryUI = UIManager.instance.transform.Find("InventoryUI").gameObject;
+        EquipUI = UIManager.instance.transform.Find("EquipUI").gameObject;
     }
 
     // Update is called once per frame
@@ -187,8 +189,9 @@ public class GameManager : MonoBehaviour
     //Toggles inventory UI
     public void ToggleInventory()
     {
+        Debug.Log("toggle inventory");
         EquipUI.SetActive(!EquipUI.activeSelf);
-        GeneralUI.SetActive(!GeneralUI.activeSelf);
+        InventoryUI.SetActive(!InventoryUI.activeSelf);
     }
 
 
@@ -350,13 +353,13 @@ public class GameManager : MonoBehaviour
                 }
 
                 //Makes sure general ui is on
-                if (!GeneralUI.activeSelf)
+                if (!InventoryUI.activeSelf)
                 {
                     ToggleInventory();
                 }
 
                 //Enables popup
-                recieveObject = GeneralUI.transform.Find("ItemRecieve");
+                recieveObject = InventoryUI.transform.Find("ItemRecieve");
           
                 recieveText = recieveObject.GetComponent<TextMeshProUGUI>();
                 recieveObject.gameObject.SetActive(true);
@@ -699,8 +702,7 @@ public class GameManager : MonoBehaviour
             //Orpheus died:
             //game over!
             //RIP in Fart for playtest for now
-
-            // Matt make a Game Over screen
+            SceneManager.LoadScene("GameOver");
         }
 
 

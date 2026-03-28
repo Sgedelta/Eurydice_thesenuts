@@ -177,6 +177,10 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
         MaxMorale += 10;
         MoraleDisplayPercent += 0.55f;
 
+        if(UIManager.instance && UIManager.instance.GetComponent<LevelUpUIManager>())
+        {
+            UIManager.instance.GetComponent<LevelUpUIManager>().DisplayLevelUpPanel();
+        }
     }
 
     public void Attack(float effectiveness, IHasMorale target, OrpheusDecision dec)
