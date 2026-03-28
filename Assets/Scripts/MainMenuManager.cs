@@ -7,22 +7,15 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        //if(PauseMenu.instance)
-        //{
-        //    PauseMenu.instance.gameObject.SetActive(false);
-        //    PauseMenu.instance.IsEnabled = false;
-        //}
     }
 
     public void StartGame()
     {
-        //PauseMenu.instance.IsEnabled = true;
         SceneManager.LoadScene(_firstLevel);
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         Application.Quit();
     }
 }

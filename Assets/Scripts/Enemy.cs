@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHasMorale
 {
-    public float Morale { get; set; } = 100;
-    public float MaxMorale { get; set; } = 100;
+    public float Morale { get; set; } = 1;
+    public float MaxMorale { get; set; } = 1;
 
     public float MoralePercent { get { return Morale / MaxMorale; } }
 

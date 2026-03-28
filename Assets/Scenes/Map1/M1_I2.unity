@@ -442,11 +442,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
---- !u!1 &609595880 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9074261977711221082, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-  m_PrefabInstance: {fileID: 609595879}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &663274154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1053,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorType: 2
   _doorScene: M1_I1
-  _canvas: {fileID: 609595880}
 --- !u!212 &1425145260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1123,7 +1117,7 @@ Transform:
   m_GameObject: {fileID: 1425145257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -4.26, z: 0}
+  m_LocalPosition: {x: 0, y: -4.27, z: 0}
   m_LocalScale: {x: 1.8487, y: 2.3479, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1649,7 +1643,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorType: 1
   _doorScene: M1_C2
-  _canvas: {fileID: 609595880}
 --- !u!212 &2077344090
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1714,7 +1707,7 @@ Transform:
   m_GameObject: {fileID: 2077344088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.19, y: 0, z: 0}
+  m_LocalPosition: {x: -8.38, y: 0.01, z: 0}
   m_LocalScale: {x: 1.8487, y: 2.3479, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
