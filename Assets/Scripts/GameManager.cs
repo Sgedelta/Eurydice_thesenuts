@@ -115,6 +115,9 @@ public class GameManager : MonoBehaviour
     public OrpheusController Orpheus;
     public EurydiceController Eurydice;
 
+    public HighlightableSprite ODisplay;
+    public HighlightableSprite EDisplay;
+
     public Enemy CurrentEnemy;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -421,6 +424,13 @@ public class GameManager : MonoBehaviour
             {
                 case 0: //E
                     totalRounds += 1;
+
+                    //display
+                    if(EDisplay != null)
+                    {
+                        EDisplay.SetHighlight(true);
+                    }
+
                     //get input
                     yield return StartCoroutine(Eurydice.GetCombatChoice());
                     EurydiceDecision Edecision = Eurydice.CombatChoice;
@@ -457,9 +467,21 @@ public class GameManager : MonoBehaviour
 
                     // Apply a delay time between Eurydice input choice and Orpheus input choice
                     yield return new WaitForSeconds(_delayTimeBetweenChoices);
+
+                    //display
+                    if (EDisplay != null)
+                    {
+                        EDisplay.SetHighlight(false);
+                    }
                     break;
 
                 case 1: //O
+                    //display
+                    if (ODisplay != null)
+                    {
+                        ODisplay.SetHighlight(true);
+                    }
+
                     //get input
                     yield return StartCoroutine(Orpheus.GetCombatChoice());
                     OrpheusDecision Odecision = Orpheus.CombatChoice;
@@ -615,6 +637,13 @@ public class GameManager : MonoBehaviour
                             i.EurydiceEndAbility(Orpheus);
                         }
                     }
+
+                    //display
+                    if (ODisplay != null)
+                    {
+                        ODisplay.SetHighlight(false);
+                    }
+
                     break;
 
                 case 2: //Enemy
