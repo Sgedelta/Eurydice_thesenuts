@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7794063636572063990}
   - component: {fileID: 5491196385398891286}
+  - component: {fileID: 7497747359848709941}
   m_Layer: 0
   m_Name: EurydiceDisplay
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3154314051202678026, guid: 49c3e936901ad6f4db92298ac3b7c7cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -87,3 +88,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7497747359848709941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676109139597522875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01dd25e88a55d884daf866e0c330b34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  _sr: {fileID: 5491196385398891286}
+  unhighlightedSprite: {fileID: 3154314051202678026, guid: 49c3e936901ad6f4db92298ac3b7c7cb, type: 3}
+  highlightedSprite: {fileID: 1117111702964678849, guid: ca2c2577f7a186143b75e07e363f7be2, type: 3}

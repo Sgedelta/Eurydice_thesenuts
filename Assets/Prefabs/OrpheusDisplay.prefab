@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988192926594450597}
   - component: {fileID: 995786659946235971}
+  - component: {fileID: 9183155802280664881}
   m_Layer: 0
   m_Name: OrpheusDisplay
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 6991623099416989943, guid: e2a32e804e2914d41beb64153560bb10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -87,3 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9183155802280664881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529324880049353315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01dd25e88a55d884daf866e0c330b34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sr: {fileID: 995786659946235971}
+  unhighlightedSprite: {fileID: 6991623099416989943, guid: e2a32e804e2914d41beb64153560bb10, type: 3}
+  highlightedSprite: {fileID: 1117111702964678849, guid: ca2c2577f7a186143b75e07e363f7be2, type: 3}
