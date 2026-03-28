@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHasMorale
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour, IHasMorale
     public bool IsAlive { get { return Morale > 0; } }
 
     public float MoraleDamagePerTurn = 12;
+
+    public List<DoTTrigger> DoTTriggers;
 
 
     public void ChangeMorale(float moraleChange)
@@ -27,7 +30,23 @@ public class Enemy : MonoBehaviour, IHasMorale
 
     private void Start()
     {
+        DoTTriggers = new List<DoTTrigger>();
         StartCoroutine(SetupOnNextFrame());
+    }
+
+    public void TriggerAllDoTTriggers()
+    {
+        //trigger damage, decrement turn, then remove if no more turns left
+        for(int i = 0; i < DoTTriggers.Count; i++)
+        {
+            Morale -= DoTTriggers[i].Damage;
+            DoTTriggers[i].TurnsLeft -= 1;
+            if(DoTTriggers[i].TurnsLeft <= 0)
+            {
+                DoTTriggers.RemoveAt(i);
+                i--;
+            }
+        }
     }
 
     private IEnumerator SetupOnNextFrame()
@@ -41,4 +60,17 @@ public class Enemy : MonoBehaviour, IHasMorale
         GameManager.instance.StartCombat(this);
     }
 
+}
+
+
+public class DoTTrigger
+{
+    public float Damage;
+    public int TurnsLeft;
+
+    public DoTTrigger(float damage, int turnsLeft)
+    {
+        Damage = damage;
+        TurnsLeft = turnsLeft;
+    }
 }

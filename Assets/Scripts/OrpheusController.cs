@@ -179,9 +179,12 @@ public class OrpheusController : MonoBehaviour, ICanEquip, ICanAttack, IHasMoral
 
     }
 
-    public void Attack(float effectiveness, IHasMorale target)
+    public void Attack(float effectiveness, IHasMorale target, OrpheusDecision dec)
     {
-        target.ChangeMorale(effectiveness * AttackDamage * -1);
+        float attackTypeScalar = dec == OrpheusDecision.LightAttack ? .5f : 2f;
+
+
+        target.ChangeMorale(effectiveness * AttackDamage * attackTypeScalar * -1);
 
 
         //OnAttack.Invoke(effectiveness); //update a bit later: idk if we use this lol -Sam
