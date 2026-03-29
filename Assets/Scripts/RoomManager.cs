@@ -96,7 +96,6 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-
     public IEnumerator WaitOneFrameAndRestart()
     {
         yield return null;

@@ -23,10 +23,19 @@ public class ItemGetButtonSetterUpper : MonoBehaviour
 
         //we have to setup callbacks here because... gamemanager. womp womp.
 
+        // Do not show the Get Item UI if this item room has already been visited
+        if (GameManager.instance.LastVisitedRoomManager.RoomData.Completed)
+        {
+            gameObject.SetActive(false);
+        }
+
         b.onClick.RemoveAllListeners();
-        b.onClick.AddListener(() => { 
-            DontDestroyOnLoad(itemToEquip);
-            UIManager.instance.AutoEquip(itemToEquip, this.gameObject);
+        b.onClick.AddListener(() => {
+            if (itemToEquip)
+            {
+                DontDestroyOnLoad(itemToEquip);
+                UIManager.instance.AutoEquip(itemToEquip, this.gameObject);
+            }
             gameObject.transform.Find("ItemPanel").Find("ItemGet").gameObject.SetActive(false);
             GameManager.instance.LastVisitedRoomManager.SetCompleted(true);
 

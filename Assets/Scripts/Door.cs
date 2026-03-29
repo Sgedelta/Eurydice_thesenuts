@@ -23,16 +23,17 @@ public class Door : MonoBehaviour, IPointerClickHandler
     // On click event
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIManager.instance.GetComponent<TransitionCanvas>().FadeInOut(_doorScene);
-        if (GameManager.instance.LastVisitedRoomManager.RoomData.Type == RoomType.Item) 
+        // Check if next room is an item room
+        if (_doorType == RoomType.Item)
         {
             UIManager.instance.EnableInventoryItems();
         }
-        else 
+        else
         {
             UIManager.instance.DisableInventoryItems();
         }
-    }
 
- 
+        // Load the next room
+        UIManager.instance.GetComponent<TransitionCanvas>().FadeInOut(_doorScene);
+    }
 }

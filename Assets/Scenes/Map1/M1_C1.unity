@@ -342,10 +342,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5443773940800811975, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 7972210063178212015, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
       propertyPath: m_Pivot.x
       value: 0

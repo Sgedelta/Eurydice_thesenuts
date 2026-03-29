@@ -236,7 +236,7 @@ public class UIManager : MonoBehaviour
 
                 string itemName = item.GetComponent<Item>().name;
                 UpdateLabel(i, itemName);
-                recieveText.text = $"You recieved a {itemName}";
+                recieveText.text = $"You received a {itemName}";
 
                 //End the loop here
                 break;
