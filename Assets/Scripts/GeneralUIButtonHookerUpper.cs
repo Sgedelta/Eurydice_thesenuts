@@ -23,7 +23,7 @@ public class GeneralUIButtonHookerUpper : MonoBehaviour
 
         InvButton.onClick.RemoveAllListeners();
         InvButton.onClick.AddListener(() => {
-            GameManager.instance.ToggleInventory();
+            UIManager.instance.ToggleInventory();
         });
     }
 

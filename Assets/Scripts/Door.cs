@@ -24,6 +24,14 @@ public class Door : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         UIManager.instance.GetComponent<TransitionCanvas>().FadeInOut(_doorScene);
+        if (GameManager.instance.LastVisitedRoomManager.RoomData.Type == RoomType.Item) 
+        {
+            UIManager.instance.EnableInventoryItems();
+        }
+        else 
+        {
+            UIManager.instance.DisableInventoryItems();
+        }
     }
 
  

@@ -26,8 +26,8 @@ public class ItemGetButtonSetterUpper : MonoBehaviour
         b.onClick.RemoveAllListeners();
         b.onClick.AddListener(() => { 
             DontDestroyOnLoad(itemToEquip);
-            GameManager.instance.AutoEquip(itemToEquip);
-            gameObject.SetActive(false);
+            UIManager.instance.AutoEquip(itemToEquip, this.gameObject);
+            gameObject.transform.Find("ItemPanel").Find("ItemGet").gameObject.SetActive(false);
             GameManager.instance.LastVisitedRoomManager.SetCompleted(true);
 
         });
@@ -37,5 +37,10 @@ public class ItemGetButtonSetterUpper : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void HideItemCanvas()
+    {
+        this.gameObject.SetActive(false);
     }
 }

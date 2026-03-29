@@ -22,7 +22,7 @@ public class EquipUIHookerUpper : MonoBehaviour
 
 
         closeButton.onClick.RemoveAllListeners();
-        closeButton.onClick.AddListener(() => { GameManager.instance.ToggleInventory(); });
+        closeButton.onClick.AddListener(() => { UIManager.instance.ToggleInventory(); });
     }
 
     // Update is called once per frame
