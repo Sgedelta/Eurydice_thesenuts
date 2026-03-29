@@ -99,11 +99,10 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        //Moving spots
+        //Moving spot
 
         //Equips selected item, get previous item in slot if applicable
         Item previousItem = EquipItem(selectedItem, i);
-
         UpdateLabel(i, selectedItem.name);
 
 
@@ -114,8 +113,8 @@ public class UIManager : MonoBehaviour
             EquipItem(previousItem, selectedItemIndex);
             UpdateLabel(selectedItemIndex, previousItem.name);
         }
-        //Empty slot
-        else
+        //Empty slot (if the player didn't double click the same spot)
+        else if (selectedItemIndex != i)
         {
             UpdateLabel(selectedItemIndex);
         }
