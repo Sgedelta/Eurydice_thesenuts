@@ -128,8 +128,8 @@ public class EurydiceController : MonoBehaviour, ICanEquip
 
         EurydiceCombatPanel.SetActive(true); // Show Combat UI
 
-        Button laurelButton = EurydiceCombatPanel.transform.GetChild(1).gameObject.GetComponent<Button>();
-        Button torchButton  = EurydiceCombatPanel.transform.GetChild(2).gameObject.GetComponent<Button>();
+        Button laurelButton = EurydiceCombatPanel.transform.GetChild(2).gameObject.GetComponent<Button>();
+        Button torchButton  = EurydiceCombatPanel.transform.GetChild(3).gameObject.GetComponent<Button>();
 
         laurelButton.interactable = false;
         torchButton.interactable = false;

@@ -1,17 +1,17 @@
 {
     "NumCombats": [
-        27,
+        31,
         0,
         0
     ],
     "NumAvgRounds": [
-        1.9629629850387574,
+        2.0322582721710207,
         0.0,
         0.0
     ]
 }
 ===ANALYSIS===
-Normal Combat Average Turn Completion: (27, 1.962963)
+Normal Combat Average Turn Completion: (31, 2.032258)
 Fog Combat Average Turn Completion: (0, 0)
 Bomb Combat Average Turn Completion: (0, 0)
 Normal Combats have a higher average than both Fog and Bomb rooms, meaning that difficulty should be adjusted!
