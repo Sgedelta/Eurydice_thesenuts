@@ -54,11 +54,11 @@ MonoBehaviour:
   _delayTimeBetweenChoices: 1
   MapWidth: 4
   MapIndex: 0
-  LastVisitedRoomManager: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
-  Orpheus: {fileID: 8042495143850129227, guid: eb03f5659eaad7344b3994e59c45bfa3, type: 3}
-  Eurydice: {fileID: 6150811001381448439, guid: 4dc2703792c803c438be7c5855e355a1, type: 3}
-  ODisplay: {fileID: 9183155802280664881, guid: d019faf83d3bee249bcb42df785e093a, type: 3}
-  EDisplay: {fileID: 7497747359848709941, guid: 9e205eea614abc94e99045a712728de7, type: 3}
+  LastVisitedRoomManager: {fileID: 0}
+  Orpheus: {fileID: 0}
+  Eurydice: {fileID: 0}
+  ODisplay: {fileID: 0}
+  EDisplay: {fileID: 0}
   CurrentEnemy: {fileID: 0}
 --- !u!114 &7973180443653968896
 MonoBehaviour:
