@@ -19,6 +19,7 @@ public class HealthBar : MonoBehaviour
     private float BarStartingScale;
     private float BarBGStartingScale;
 
+    // Matt - Enemy Bar Starting Pos and Enemy Bar Starting Scale
     private Vector3 EBarStartingPos;
     private float EBarStartingScale;
 
@@ -42,6 +43,7 @@ public class HealthBar : MonoBehaviour
         //Multiplying by 2 to match the scale for the standard bar
         BarBGStartingScale = OBarBG.transform.localScale.x * 2;
 
+        // Matt - Set these to local position and scale
         EBarStartingPos = EnemyBar.transform.localPosition;
         EBarStartingScale = EnemyBar.transform.localScale.x;
 
