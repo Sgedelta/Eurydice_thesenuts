@@ -488,28 +488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
---- !u!1 &1102381879 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2525569240758337513, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-  m_PrefabInstance: {fileID: 2009137457}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1102381884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102381879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1157921805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,14 +990,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2921960010778271275, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5443773940800811975, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 7972210063178212015, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1100,17 +1070,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9157221884780306721, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2525569240758337513, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1102381884}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42006ba02b64ba6449fe3a6b86c50375, type: 3}
 --- !u!114 &2009137458 stripped
 MonoBehaviour:

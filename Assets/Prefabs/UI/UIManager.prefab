@@ -992,6 +992,7 @@ GameObject:
   - component: {fileID: 6736757638993422560}
   - component: {fileID: 7678915702625482246}
   - component: {fileID: 4778993357752802016}
+  - component: {fileID: 3629760627148543257}
   m_Layer: 5
   m_Name: LevelUpPanel
   m_TagString: Untagged
@@ -1081,6 +1082,23 @@ Canvas:
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4778993357752802016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525569240758337513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &3629760627148543257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1595,6 +1613,7 @@ GameObject:
   - component: {fileID: 6750521291901609027}
   - component: {fileID: 6117615199335080118}
   - component: {fileID: 5443773940800811975}
+  - component: {fileID: 4639064608153270214}
   m_Layer: 5
   m_Name: PauseMenuPanel
   m_TagString: Untagged
@@ -1686,6 +1705,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0
+--- !u!114 &4639064608153270214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630535147454462653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &7460228655587717859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437825987109816807, guid: 24ed18e3cb0a5844284e696f52daa692, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3503030847587149611, guid: 24ed18e3cb0a5844284e696f52daa692, type: 3}
       propertyPath: m_AnchoredPosition.x

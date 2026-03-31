@@ -19,6 +19,9 @@ public class HealthBar : MonoBehaviour
     private float BarStartingScale;
     private float BarBGStartingScale;
 
+    private Vector3 EBarStartingPos;
+    private float EBarStartingScale;
+
     private void Start()
     {
         StartCoroutine(SetupOnceGMIsGood());
@@ -38,6 +41,9 @@ public class HealthBar : MonoBehaviour
         BarStartingScale = OBar.transform.localScale.x;
         //Multiplying by 2 to match the scale for the standard bar
         BarBGStartingScale = OBarBG.transform.localScale.x * 2;
+
+        EBarStartingPos = EnemyBar.transform.localPosition;
+        EBarStartingScale = EnemyBar.transform.localScale.x;
 
         EnemyBar.transform.localPosition = BarStartingPos * -1;
         EnemyBar.transform.localScale = new Vector3(BarStartingScale, EnemyBar.transform.localScale.y, EnemyBar.transform.localScale.z);
