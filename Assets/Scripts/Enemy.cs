@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IHasMorale
 {
-    public float Morale { get; set; } = 1;
+    public float Morale { get; set; } = 100;
     public float MaxMorale { get; set; } = 100;
 
     public float MoralePercent { get { return Morale / MaxMorale; } }
 
     public bool IsAlive { get { return Morale > 0; } }
 
-    public float MoraleDamagePerTurn = 12;
+    public Vector2 MoraleDamagePerTurn = new Vector2(5, 15);
 
     public List<DoTTrigger> DoTTriggers;
 

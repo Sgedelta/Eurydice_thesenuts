@@ -1,17 +1,18 @@
 {
     "NumCombats": [
-        7,
-        0,
-        0
+        3,
+        2,
+        2
     ],
     "NumAvgRounds": [
-        1.1428571939468384,
-        0.0,
-        0.0
+        5.0,
+        6.0,
+        5.0
     ]
 }
 ===ANALYSIS===
-Normal Combat Average Turn Completion: (7, 1.142857)
-Fog Combat Average Turn Completion: (0, 0)
-Bomb Combat Average Turn Completion: (0, 0)
-Normal Combats have a higher average than both Fog and Bomb rooms, meaning that difficulty should be adjusted!
+Normal Combat Average Turn Completion: (3, 5)
+Fog Combat Average Turn Completion: (2, 6)
+Bomb Combat Average Turn Completion: (2, 5)
+Bomb combats are harder than normal combats by 0 turns on average
+Fog combats are harder than normal combats by 1 turns on average

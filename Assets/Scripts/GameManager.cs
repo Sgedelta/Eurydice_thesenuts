@@ -426,7 +426,7 @@ public class GameManager : MonoBehaviour
                     //do DoT 
                     CurrentEnemy.TriggerAllDoTTriggers();
                     //ouch.
-                    Orpheus.ChangeMorale(-CurrentEnemy.MoraleDamagePerTurn);
+                    Orpheus.ChangeMorale(-UnityEngine.Random.Range(CurrentEnemy.MoraleDamagePerTurn.x, CurrentEnemy.MoraleDamagePerTurn.y));
                     // At the end of each turn (enemy attacks), increment TurnsPerCombat for data-tracking
                     
                     yield return null; //chug along

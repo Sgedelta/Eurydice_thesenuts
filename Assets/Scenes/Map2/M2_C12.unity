@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1988192926594450597, guid: d019faf83d3bee249bcb42df785e093a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.55
+      value: -4.86
       objectReference: {fileID: 0}
     - target: {fileID: 1988192926594450597, guid: d019faf83d3bee249bcb42df785e093a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8883433626a184083c448f4fba6f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoraleDamagePerTurn: 12
+  MoraleDamagePerTurn: {x: 5, y: 15}
 --- !u!4 &504827758
 Transform:
   m_ObjectHideFlags: 0
@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7794063636572063990, guid: 9e205eea614abc94e99045a712728de7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.2218328
+      value: -6.511833
       objectReference: {fileID: 0}
     - target: {fileID: 7794063636572063990, guid: 9e205eea614abc94e99045a712728de7, type: 3}
       propertyPath: m_LocalPosition.y

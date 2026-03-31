@@ -888,7 +888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1988192926594450597, guid: d019faf83d3bee249bcb42df785e093a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.383091
+      value: -4.99
       objectReference: {fileID: 0}
     - target: {fileID: 1988192926594450597, guid: d019faf83d3bee249bcb42df785e093a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8883433626a184083c448f4fba6f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoraleDamagePerTurn: 12
+  MoraleDamagePerTurn: {x: 5, y: 15}
 --- !u!4 &2025156882
 Transform:
   m_ObjectHideFlags: 0
