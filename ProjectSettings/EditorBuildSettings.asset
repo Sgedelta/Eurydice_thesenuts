@@ -83,5 +83,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map2/M2_R23.unity
     guid: a2e1185e87b15ab4288d929de25afa43
+  - enabled: 1
+    path: Assets/Scenes/Menus/GameOver.unity
+    guid: 1f5404d1060292f4f82995120fd1a5da
+  - enabled: 1
+    path: Assets/Scenes/Menus/WinScreen.unity
+    guid: 4319e84c6f601a3498ee59ca835d7a38
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -117,13 +117,13 @@ public class GameManager : MonoBehaviour
         Orpheus.NextLevelXP = 4;
         Orpheus.Morale = 100;
         Orpheus.MaxMorale = 100;
-
+        
         Orpheus.UnequipItem(Orpheus.EquippedItems[0]);
         Orpheus.UnequipItem(Orpheus.EquippedItems[1]);
-
+        
         Eurydice.UnequipItem(Eurydice.EquippedItems[0]);
         Eurydice.UnequipItem(Eurydice.EquippedItems[1]);
-
+        
         UIManager.instance.ResetInventoryText();
     }
 
