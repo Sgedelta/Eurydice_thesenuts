@@ -16,13 +16,13 @@ public class TorchItem : Item
         //Modifies attack hitbox via increasing perfect allowing and decreasing miss allowance 
         //TODO: CHECK THAT THIS FUNCTIONS AS ASSUMED
         control.AttackPerfectAllowance *= modifyAmount;
-        control.AttackMissAllowance /= modifyAmount;
+        control.AttackMissAllowance *= modifyAmount;
 
     }
     public override void OrpheusUnequip(OrpheusController control)
     {
         //Resets values of allowances
-        control.AttackMissAllowance *= modifyAmount;
+        control.AttackMissAllowance /= modifyAmount;
         control.AttackPerfectAllowance /= modifyAmount;
     }
     public override void EurydiceAbility(OrpheusController control)

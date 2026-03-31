@@ -1224,11 +1224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4770179544387132407, guid: 6d36a91ede1a85a47b328f04102468c2, type: 3}
       propertyPath: modifyAmountOrpheus
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4770179544387132407, guid: 6d36a91ede1a85a47b328f04102468c2, type: 3}
       propertyPath: modifyAmountEurydice
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 5419899682833509102, guid: 6d36a91ede1a85a47b328f04102468c2, type: 3}
       propertyPath: m_Name
@@ -1278,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: objectsToKill.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: 'doorObjects.Array.data[0]'
@@ -1299,11 +1299,11 @@ PrefabInstance:
     - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: 'objectsToKill.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2096939657}
     - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: 'objectsToKill.Array.data[1]'
       value: 
-      objectReference: {fileID: 2096939657}
+      objectReference: {fileID: 1122378669}
     - target: {fileID: 1452649761698432112, guid: 80db86fb73c2cda4cbf2e87cc653f696, type: 3}
       propertyPath: 'objectsToKill.Array.data[2]'
       value: 

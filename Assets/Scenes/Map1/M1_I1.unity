@@ -1566,11 +1566,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4770179544387132407, guid: 6d36a91ede1a85a47b328f04102468c2, type: 3}
       propertyPath: modifyAmountOrpheus
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4770179544387132407, guid: 6d36a91ede1a85a47b328f04102468c2, type: 3}
       propertyPath: modifyAmountEurydice
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 5419899682833509102, guid: 6d36a91ede1a85a47b328f04102468c2, type: 3}
       propertyPath: m_Name
