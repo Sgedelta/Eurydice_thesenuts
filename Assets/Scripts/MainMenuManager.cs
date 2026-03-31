@@ -10,6 +10,11 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        if (UIManager.instance)
+        {
+            UIManager.instance.gameObject.transform.Find("PauseMenuPanel").gameObject.SetActive(false);
+            UIManager.instance.GetComponent<PauseMenu>().IsEnabled = false;
+        }
     }
 
     public void StartGame()
@@ -17,6 +22,11 @@ public class MainMenuManager : MonoBehaviour
         //Resetting these in case it'd cause issues later
         IntroView.SetActive(false);
         MainView.SetActive(true);
+
+        if (UIManager.instance)
+        {
+            UIManager.instance.GetComponent<PauseMenu>().IsEnabled = true;
+        }
         SceneManager.LoadScene(_firstLevel);
     }
 

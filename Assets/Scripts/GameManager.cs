@@ -110,6 +110,21 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Reset()
+    {
+        Orpheus.CurrentXP = 0;
+        Orpheus.Level = 1;
+        Orpheus.NextLevelXP = 4;
+        Orpheus.Morale = 100;
+        Orpheus.MaxMorale = 100;
+
+        Orpheus.UnequipItem(Orpheus.EquippedItems[0]);
+        Orpheus.UnequipItem(Orpheus.EquippedItems[1]);
+
+        Eurydice.UnequipItem(Eurydice.EquippedItems[0]);
+        Eurydice.UnequipItem(Eurydice.EquippedItems[1]);
+    }
+
     public void SetupMapDimensions(int xSize, int ySize)
     {
         if(roomDatas != null)

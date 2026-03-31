@@ -107,7 +107,7 @@ public class EurydiceController : MonoBehaviour, ICanEquip
         //Search array for matching item
         for (int i = 0; i < EquippedItems.Length; i++)
         {
-            if (EquippedItems[i] == item)
+            if (EquippedItems[i] != null && EquippedItems[i] == item)
             {
                 EquippedItems[i] = null;
                 return true;
