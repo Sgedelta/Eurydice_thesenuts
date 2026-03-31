@@ -8,7 +8,11 @@ public class GameOverManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (UIManager.instance)
+        {
+            UIManager.instance.gameObject.transform.Find("PauseMenuPanel").gameObject.SetActive(false);
+            UIManager.instance.GetComponent<PauseMenu>().IsEnabled = false;
+        }
     }
 
     // Update is called once per frame
