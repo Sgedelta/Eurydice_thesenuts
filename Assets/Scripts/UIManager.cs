@@ -248,6 +248,14 @@ public class UIManager : MonoBehaviour
     {
         inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = name;
     }
+
+    public void ResetInventoryText()
+    {
+        for(int i = 0; i < inventorySlots.Length; i++)
+        {
+            UpdateLabel(i);
+        }
+    }
     
     // Enables clicking of inventory items
     public void EnableInventoryItems()

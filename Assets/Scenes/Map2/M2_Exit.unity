@@ -267,6 +267,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 8686380151361701197, guid: 72f606c747b5f544fa3e1cc09ba6a5ca, type: 3}
+      propertyPath: _gm
+      value: 
+      objectReference: {fileID: 457698728}
     - target: {fileID: 8777977111681246893, guid: 72f606c747b5f544fa3e1cc09ba6a5ca, type: 3}
       propertyPath: m_text
       value: 'Orpheus & Eurydice reached the end! Unfortunately, Orpheus decides
@@ -617,6 +621,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+--- !u!1 &457698728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6348212790741960469, guid: 612aec158e830d9498b4fa7319733287, type: 3}
+  m_PrefabInstance: {fileID: 457698727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &512283725
 PrefabInstance:
   m_ObjectHideFlags: 0

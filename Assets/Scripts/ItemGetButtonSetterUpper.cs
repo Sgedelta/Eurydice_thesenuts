@@ -51,5 +51,6 @@ public class ItemGetButtonSetterUpper : MonoBehaviour
     public void HideItemCanvas()
     {
         this.gameObject.SetActive(false);
+        
     }
 }

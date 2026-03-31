@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     [SerializeField] private string _mainMenu;
+    [SerializeField] private GameObject _gm;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,6 +14,8 @@ public class GameOverManager : MonoBehaviour
             UIManager.instance.gameObject.transform.Find("PauseMenuPanel").gameObject.SetActive(false);
             UIManager.instance.GetComponent<PauseMenu>().IsEnabled = false;
         }
+
+        
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class GameOverManager : MonoBehaviour
 
     public void MainMenu()
     {
+        _gm.GetComponent<GameManager>().Reset();
         SceneManager.LoadScene(_mainMenu);
     }
 

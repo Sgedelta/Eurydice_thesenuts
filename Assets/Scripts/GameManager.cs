@@ -123,6 +123,8 @@ public class GameManager : MonoBehaviour
 
         Eurydice.UnequipItem(Eurydice.EquippedItems[0]);
         Eurydice.UnequipItem(Eurydice.EquippedItems[1]);
+
+        UIManager.instance.ResetInventoryText();
     }
 
     public void SetupMapDimensions(int xSize, int ySize)
