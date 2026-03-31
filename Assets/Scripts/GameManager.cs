@@ -69,7 +69,14 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SetupMapDimensions(3, 3); //TEMP
             
-            TryLoadSavedData();
+            if(!TryLoadSavedData()) 
+            {
+                //load some chud data so "analysis" works
+                DataTracker.Add(RoomModifier.Fog, new Tuple<int, float>(0,0));
+                DataTracker.Add(RoomModifier.Bomb, new Tuple<int, float>(0, 0));
+                DataTracker.Add(RoomModifier.NONE, new Tuple<int, float>(0, 0));
+            }
+
         }
         //awake should never be called twice but. just in case!
         else if (instance != this)

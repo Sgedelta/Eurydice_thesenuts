@@ -103,4 +103,4 @@ MonoBehaviour:
   type: 0
   _sr: {fileID: 995786659946235971}
   unhighlightedSprite: {fileID: 6991623099416989943, guid: b304fa88b6c23044699b36ba9d32d14f, type: 3}
-  highlightedSprite: {fileID: 9077549785906718302, guid: ffbde927f3139ad4eb9bec8de6cbf182, type: 3}
+  highlightedSprite: {fileID: 709356060657314933, guid: bd24440c48bb7284aa0fe70e27c4fbb5, type: 3}
