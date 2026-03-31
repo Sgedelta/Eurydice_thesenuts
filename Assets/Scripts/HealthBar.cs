@@ -13,15 +13,11 @@ public class HealthBar : MonoBehaviour
     [SerializeField] GameObject OBar;
     [SerializeField] GameObject EnemyBar;
     [SerializeField] GameObject OBarBG;
+    [SerializeField] GameObject EnemyBarBG;
 
-    private Vector3 BarStartingPos;
-    private Vector3 BarBGStartingPos;
-    private float BarStartingScale;
-    private float BarBGStartingScale;
+    [SerializeField] Vector2 OXScale = new Vector2(2, 7.1f);
+    [SerializeField] int OMaxLevel = 7;
 
-    // Matt - Enemy Bar Starting Pos and Enemy Bar Starting Scale
-    private Vector3 EBarStartingPos;
-    private float EBarStartingScale;
 
     private void Start()
     {
@@ -36,29 +32,13 @@ public class HealthBar : MonoBehaviour
             yield return null;
         }
 
-
-        BarStartingPos = OBar.transform.localPosition;
-        BarBGStartingPos = OBarBG.transform.localPosition;
-        BarStartingScale = OBar.transform.localScale.x;
-        //Multiplying by 2 to match the scale for the standard bar
-        BarBGStartingScale = OBarBG.transform.localScale.x * 2;
-
-        // Matt - Set these to local position and scale
-        EBarStartingPos = EnemyBar.transform.localPosition;
-        EBarStartingScale = EnemyBar.transform.localScale.x;
-
-        EnemyBar.transform.localPosition = BarStartingPos * -1;
-        EnemyBar.transform.localScale = new Vector3(BarStartingScale, EnemyBar.transform.localScale.y, EnemyBar.transform.localScale.z);
-        EnemyBar.SetActive(false);
-
         GameManager.instance.ActiveHealthBar = this;
     }
    
     //Updates health bg scaling, used for level up
     public void ScaleHealthBG(float OrpheusMaxPercent)
     {
-        OBarBG.transform.localScale = new Vector2((BarBGStartingScale * OrpheusMaxPercent + 0.5f), OBarBG.transform.localScale.y);
-        OBarBG.transform.localPosition = BarBGStartingPos + Vector3.left * BarBGStartingPos.x;
+        OBarBG.transform.localScale = new Vector2(Mathf.Lerp(OXScale.x, OXScale.y, OrpheusMaxPercent), OBarBG.transform.localScale.y);
     }
 
     public void SetHealthData(float OPercentLeft, float OrpheusMaxPercent, float EnemyPercentLeft = -1)
@@ -66,10 +46,7 @@ public class HealthBar : MonoBehaviour
         ScaleHealthBG(OrpheusMaxPercent);
 
         //scale to correct size
-        OBar.transform.localScale = new Vector2((BarStartingScale * OrpheusMaxPercent) * OPercentLeft, OBar.transform.localScale.y);
-
-        //set to correct position
-        OBar.transform.localPosition = (BarStartingPos * OrpheusMaxPercent) + Vector3.left * (1 - OPercentLeft) * BarStartingPos.x;
+        OBar.transform.localScale = new Vector2(OBarBG.transform.localScale.x * OPercentLeft, OBar.transform.localScale.y);
 
         if(!haveEnemyHealth || EnemyPercentLeft == -1)
         {
@@ -77,10 +54,9 @@ public class HealthBar : MonoBehaviour
         }
 
         //scale to correct size
-        EnemyBar.transform.localScale = new Vector2(BarStartingScale * EnemyPercentLeft, EnemyBar.transform.localScale.y);
+        EnemyBar.transform.localScale = new Vector2(EnemyBarBG.transform.localScale.x * EnemyPercentLeft, EnemyBar.transform.localScale.y);
 
-        //set to correct position
-        EnemyBar.transform.localPosition = -BarStartingPos + Vector3.right * (1 - EnemyPercentLeft) * BarStartingPos.x;
+       
     }
 
 
